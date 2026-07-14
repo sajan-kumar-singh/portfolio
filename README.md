@@ -2,44 +2,6 @@
 
 Portfolio URL: [https://sajanportfolio.pages.dev/](https://sajanportfolio.pages.dev/)
 
-## Purpose
-This portfolio is being built as a simple static website so it can be deployed quickly, updated easily, and expanded later without changing the initial setup too much.
-
-The current goal is to keep the project minimal:
-- Show profile/basic identity
-- Show design or project work
-- Let visitors connect through the site
-- Keep deployment simple and free for now
-
-## Current Tech Choice
-Current stack:
-- HTML
-- CSS
-- JavaScript
-
-Current file structure:
-```txt
-portfolio/
-  index.html
-  style.css
-  script.js
-  assets/
-    images/
-```
-
-This structure is enough for a basic Cloudflare Pages deployment because it is a static site with `index.html` at the root.
-
-## Current Cloudflare Pages Setup
-Use these settings for the current version:
-- Project name: `sajanportfolio`
-- Production branch: `main`
-- Framework preset: `None`
-- Build command: leave blank
-- Build output directory: `/`
-- Root directory: leave blank
-- Environment variables: none for now
-
-This works because the project is plain static HTML/CSS/JS.
 
 ## Deployment Flow
 Current deployment flow:
@@ -50,25 +12,6 @@ Current deployment flow:
 
 So the website can be updated just by pushing code to GitHub.
 
-## Important Understanding
-Cloudflare Pages does not magically understand every project structure.
-
-For the current static site, it works easily because there is no build step.
-
-If the project is changed later to React, Angular, or another framework, the Cloudflare build settings can also be changed later. Nothing is permanently locked right now.
-
-## Future Upgrade Path
-Possible future upgrade options:
-- Keep using plain HTML/CSS/JS
-- Move to React
-- Move to Angular
-
-If upgraded later:
-- build settings will need to be updated
-- output folder may change
-- framework preset may change
-
-So the correct move for now is: deploy the simple version first, then upgrade later only if needed.
 
 ## Contact Form Decision
 A static portfolio can include a contact form UI using HTML/CSS/JS.
@@ -83,14 +26,6 @@ That means:
 - the form can be designed now
 - real submission/email logic can be added later
 
-## What Was Decided
-The practical decision so far:
-- Do not overcomplicate the first version
-- Do not buy paid hosting just for a basic portfolio
-- Do not buy a custom domain right now unless branding is needed
-- Use Cloudflare Pages free hosting first
-- Use GitHub for source control and deployment trigger
-- Build a simple static version first
 
 ## Minimal First Version
 The first version should focus on:
@@ -124,3 +59,21 @@ Current status:
 - Cloudflare Pages setup is identified
 - GitHub auto-deploy flow is understood
 - Next step is to keep building the portfolio content
+
+
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the Oxlint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
