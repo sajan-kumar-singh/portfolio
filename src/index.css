@@ -9,8 +9,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Premium Dark Mode Aesthetic */
-  /* background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); */
   background-color: black;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: #ffffff;
@@ -71,8 +69,12 @@ nav ul li a:hover {
 
 .banner {
   width: 100vw;
-  height: 580px;
-  background-color: rgb(100, 94, 94);
+  height: 100vh;
+  background: #000000;
+  background: -webkit-linear-gradient(160deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 46%, rgba(250, 138, 0, 1) 100%);
+  background: -moz-linear-gradient(160deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 46%, rgba(250, 138, 0, 1) 100%);
+  background: linear-gradient(160deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 46%, rgba(250, 138, 0, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#FA8A00", GradientType=0);
   position: relative;
   overflow: hidden;
 }
@@ -81,19 +83,19 @@ nav ul li a:hover {
   position: absolute;
   bottom: 0;
   right: 0;
-  border-top: 3px solid white;
-  border-left: 3px solid white;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
   border-top-left-radius: 100%;
 }
 
 .ring-outer {
-  width: 350px;
-  height: 350px;
+  width: 550px;
+  height: 550px;
 }
 
 .ring-inner {
-  width: 277px;
-  height: 277px;
+  width: 440px;
+  height: 440px;
 }
 
 .orbit-icon {
@@ -101,38 +103,48 @@ nav ul li a:hover {
   /* Centered at the bottom right corner (0,0) before translation */
   bottom: -10px;
   right: -10px;
-  width: 20px;
-  height: 20px;
+  width: 35px;
+  height: 35px;
   object-fit: contain;
   z-index: 10;
 }
 
 .icon-outer {
   /* 348.5px is the radius to the center of the outer ring's border */
-  animation: orbit-outer 5s linear infinite;
+  animation: orbit-outer 10s linear infinite;
 }
 
 .icon-inner {
   /* 275.5px is the radius to the center of the inner ring's border */
-  animation: orbit-inner 4s linear infinite;
+  animation: orbit-inner 8s linear infinite;
 }
 
 @keyframes orbit-outer {
   0% {
-    transform: rotate(0deg) translateY(-348.5px) rotate(0deg);
+    transform: rotate(0deg) translateY(-540.5px) rotate(0deg);
   }
 
   100% {
-    transform: rotate(-90deg) translateY(-348.5px) rotate(90deg);
+    transform: rotate(-90deg) translateY(-540.5px) rotate(90deg);
   }
 }
 
 @keyframes orbit-inner {
   0% {
-    transform: rotate(-90deg) translateY(-275.5px) rotate(90deg);
+    transform: rotate(-90deg) translateY(-430.5px) rotate(90deg);
   }
 
   100% {
-    transform: rotate(0deg) translateY(-275.5px) rotate(0deg);
+    transform: rotate(0deg) translateY(-430.5px) rotate(0deg);
   }
+}
+
+.bottom-right-image {
+  position: absolute;
+  bottom: 0;
+  right: -70px;
+  width: 500px;
+  height: 500px;
+  z-index: 10;
+  object-fit: cover;
 }
