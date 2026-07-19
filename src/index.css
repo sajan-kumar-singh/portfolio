@@ -28,11 +28,33 @@ body {
   }
 }
 
-nav {
+.header-container {
   position: fixed;
   top: 20px;
   left: 20px;
   right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+.home-logo {
+  flex: 0 0 auto;
+  padding-left: 20px;
+}
+
+.home-logo a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.nav-bar {
+  width: 60%;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
@@ -40,18 +62,15 @@ nav {
   border-radius: 50px;
   padding: 15px 0;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  display: flex;
+  justify-content: center;
 }
 
-nav ul {
+.nav-links {
   display: flex;
   list-style: none;
   justify-content: space-evenly;
-}
-
-nav ul li {
-  flex: 1;
-  text-align: center;
+  width: 100%;
 }
 
 nav ul li a {
@@ -147,4 +166,107 @@ nav ul li a:hover {
   height: 500px;
   z-index: 10;
   object-fit: cover;
+}
+
+.page-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  color: white;
+}
+
+.typing-container {
+  position: absolute;
+  top: 37%;
+  left: 12%;
+  transform: translateY(-50%);
+  z-index: 100;
+  text-align: left;
+  min-width: 600px;
+}
+
+.intro-text {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+
+.highlight {
+  color: #FA8A00;
+}
+
+.dynamic-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.small-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-top: 8px;
+}
+
+.dynamic-text {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #FA8A00;
+  margin: 0;
+  line-height: 1;
+}
+
+.cursor {
+  font-weight: 100;
+  font-size: 3.5rem;
+  color: #ffffff;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.cuboid-wrapper {
+  perspective: 1000px;
+  margin-top: 5px;
+  height: 2rem;
+  position: relative;
+}
+
+.cuboid-text {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #aaaaaa;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-style: preserve-3d;
+  transform-origin: 50% 100%;
+  animation: cube-spin 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes cube-spin {
+  0% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
 }

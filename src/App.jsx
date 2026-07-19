@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import './index.css';
 import foregroundImg from './assets/Gemini_Generated_Image_qm97ngqm97ngqm97-removebg-preview.png';
 import github from './assets/github.png';
@@ -9,18 +10,16 @@ import aws from './assets/amazon-web-services-logo-d111.png';
 import cursor from './assets/Cursor-Ai-Logo-PNG-SVG-Vector.png';
 import leetcode from './assets/leetcode-logo_brandlogos.net_c4kgx.png';
 import ai from './assets/robot-ai.png';
+import Achievements from './Achievements';
+import Portfolio from './Portfolio';
+import Connect from './Connect';
+import TypingText from './TypingText';
 
-function App() {
+function Home() {
   return (
     <div>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/">Portfolio</a></li>
-          <li><a href="/">Contact</a></li>
-        </ul>
-      </nav>
       <div className="banner">
+        <TypingText />
         <div className="ring ring-outer"></div>
         <div className="ring ring-inner"></div>
 
@@ -41,6 +40,31 @@ function App() {
         <img src={foregroundImg} alt="foreground" className="bottom-right-image" />
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <header className="header-container">
+        <div className="home-logo">
+          <Link to="/">Home</Link>
+        </div>
+        <nav className="nav-bar">
+          <ul className="nav-links">
+            <li><Link to="/portfolio">Portfolio</Link></li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/connect">Connect</Link></li>
+          </ul>
+        </nav>
+      </header>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/about" element={<Achievements />} />
+        <Route path="/connect" element={<Connect />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
