@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import './index.css';
 import foregroundImg from './assets/Gemini_Generated_Image_qm97ngqm97ngqm97-removebg-preview.png';
@@ -44,17 +45,34 @@ function Home() {
 }
 
 function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
   return (
     <BrowserRouter>
       <header className="header-container">
         <div className="home-logo">
           <Link to="/">Home</Link>
         </div>
-        <nav className="nav-bar">
+        
+        <div className={`hamburger ${isSidebarOpen ? 'active' : ''}`} onClick={toggleSidebar}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </div>
+
+        <nav className={`nav-bar ${isSidebarOpen ? 'active' : ''}`}>
           <ul className="nav-links">
-            <li><Link to="/portfolio">Portfolio</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/connect">Connect</Link></li>
+            <li><Link to="/portfolio" onClick={closeSidebar}>Portfolio</Link></li>
+            <li><Link to="/about" onClick={closeSidebar}>About</Link></li>
+            <li><Link to="/connect" onClick={closeSidebar}>Connect</Link></li>
           </ul>
         </nav>
       </header>
