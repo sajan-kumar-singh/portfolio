@@ -54,15 +54,15 @@ const TypingText = () => {
   }, [text, isDeleting, loopNum]);
 
   return (
-    <div className="typing-container">
-      <h1 className="intro-text">
-        Hi, <span className="highlight">SAJAN</span> here!
+    <div className="absolute top-fluid-top left-[5%] lg:left-[12%] -translate-y-1/2 z-[100] text-left w-[90%] lg:w-auto">
+      <h1 className="text-fluid-h2 font-bold text-white mb-1">
+        Hi, <span className="text-[#FA8A00]">SAJAN</span> here!
       </h1>
-      <div className="dynamic-line">
-        <span className="small-text">I'm</span>
-        <h2 className="dynamic-text">
+      <div className="flex items-start gap-4">
+        <span className="text-fluid-body font-bold text-white mt-2">I'm</span>
+        <h2 className="text-fluid-h1 font-bold text-[#FA8A00] m-0 leading-none">
           <span className="typed-text">{text}</span>
-          <span className="cursor">|</span>
+          <span className="font-thin text-fluid-h1 text-white animate-[blink_1s_step-end_infinite]">|</span>
         </h2>
       </div>
       <div className="cuboid-wrapper">

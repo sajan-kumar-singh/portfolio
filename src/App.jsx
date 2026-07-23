@@ -24,14 +24,14 @@ function Home() {
         <div className="ring ring-outer"></div>
         <div className="ring ring-inner"></div>
 
-        {/* Outer Orbit - 3 Images */}
+        {/* Outer Orbit - 5 Images */}
         <img src={github} alt="outer-orbit-1" className="orbit-icon icon-outer" style={{ filter: 'invert(1)', animationDelay: '0s' }} />
         <img src={insta} alt="outer-orbit-2" className="orbit-icon icon-outer" style={{ animationDelay: '-2s' }} />
         <img src={docker} alt="outer-orbit-3" className="orbit-icon icon-outer" style={{ animationDelay: '-4s' }} />
         <img src={react} alt="outer-orbit-4" className="orbit-icon icon-outer" style={{ animationDelay: '-6s' }} />
         <img src={microservices} alt="outer-orbit-5" className="orbit-icon icon-outer" style={{ filter: 'invert(1)', width: '40px', height: '40px', animationDelay: '-8s' }} />
 
-        {/* Inner Orbit - 3 Images */}
+        {/* Inner Orbit - 4 Images */}
         <img src={aws} alt="inner-orbit-1" className="orbit-icon icon-inner" style={{ animationDelay: '0s' }} />
         <img src={cursor} alt="inner-orbit-2" className="orbit-icon icon-inner" style={{ animationDelay: '-2s' }} />
         <img src={leetcode} alt="inner-orbit-3" className="orbit-icon icon-inner" style={{ animationDelay: '-4s' }} />
@@ -61,9 +61,9 @@ function App() {
         <div className="home-logo">
           <Link to="/">Home</Link>
         </div>
-        
-        <div 
-          className="flex lg:hidden flex-col gap-[6px] z-[1001] cursor-pointer" 
+
+        <div
+          className="flex lg:hidden flex-col gap-[6px] z-[1001] cursor-pointer"
           onClick={toggleSidebar}
         >
           <span className={`w-[25px] h-[3px] bg-white rounded-sm transition-all duration-300 ${isSidebarOpen ? 'translate-y-[9px] rotate-45' : ''}`}></span>
@@ -71,7 +71,7 @@ function App() {
           <span className={`w-[25px] h-[3px] bg-white rounded-sm transition-all duration-300 ${isSidebarOpen ? '-translate-y-[9px] -rotate-45' : ''}`}></span>
         </div>
 
-        <nav 
+        <nav
           className={`nav-bar fixed lg:static top-0 transition-[right] duration-300 ease-in-out z-[1000] lg:z-auto flex-col lg:flex-row justify-center items-center h-screen lg:h-auto !w-[250px] lg:!w-[60%] !bg-black/95 lg:!bg-white/10 !rounded-none lg:!rounded-[50px] !border-none lg:!border-solid lg:!border lg:!border-white/20 ${isSidebarOpen ? 'right-0' : '-right-full'} lg:right-auto`}
         >
           <ul className="nav-links !flex-col lg:!flex-row !justify-center lg:!justify-evenly items-center gap-10 lg:gap-0 h-full lg:h-auto w-full">

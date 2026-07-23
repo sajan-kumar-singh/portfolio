@@ -1,4 +1,12 @@
 @import "tailwindcss";
+
+@theme {
+  --text-fluid-h1: clamp(2rem, 5vw, 3.5rem);
+  --text-fluid-h2: clamp(1.5rem, 4vw, 2.5rem);
+  --text-fluid-body: clamp(1rem, 2.5vw, 1.5rem);
+  --spacing-fluid-top: clamp(20%, 30vw, 37%);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -108,14 +116,19 @@ nav ul li a:hover {
   border-top-left-radius: 100%;
 }
 
+:root {
+  --orbit-outer-size: clamp(350px, 35.5vw, 550px);
+  --orbit-inner-size: clamp(280px, 28.4vw, 440px);
+}
+
 .ring-outer {
-  width: 550px;
-  height: 550px;
+  width: var(--orbit-outer-size);
+  height: var(--orbit-outer-size);
 }
 
 .ring-inner {
-  width: 440px;
-  height: 440px;
+  width: var(--orbit-inner-size);
+  height: var(--orbit-inner-size);
 }
 
 .orbit-icon {
@@ -130,32 +143,30 @@ nav ul li a:hover {
 }
 
 .icon-outer {
-  /* 348.5px is the radius to the center of the outer ring's border */
   animation: orbit-outer 10s linear infinite;
 }
 
 .icon-inner {
-  /* 275.5px is the radius to the center of the inner ring's border */
   animation: orbit-inner 8s linear infinite;
 }
 
 @keyframes orbit-outer {
   0% {
-    transform: rotate(0deg) translateY(-540.5px) rotate(0deg);
+    transform: rotate(0deg) translateY(calc(var(--orbit-outer-size) * -1 + 9.5px)) rotate(0deg);
   }
 
   100% {
-    transform: rotate(-90deg) translateY(-540.5px) rotate(90deg);
+    transform: rotate(-90deg) translateY(calc(var(--orbit-outer-size) * -1 + 9.5px)) rotate(90deg);
   }
 }
 
 @keyframes orbit-inner {
   0% {
-    transform: rotate(-90deg) translateY(-430.5px) rotate(90deg);
+    transform: rotate(-90deg) translateY(calc(var(--orbit-inner-size) * -1 + 9.5px)) rotate(90deg);
   }
 
   100% {
-    transform: rotate(0deg) translateY(-430.5px) rotate(0deg);
+    transform: rotate(0deg) translateY(calc(var(--orbit-inner-size) * -1 + 9.5px)) rotate(0deg);
   }
 }
 
@@ -163,8 +174,8 @@ nav ul li a:hover {
   position: absolute;
   bottom: 0;
   right: -70px;
-  width: 500px;
-  height: 500px;
+  width: clamp(350px, 32vw, 500px);
+  height: clamp(350px, 32vw, 500px);
   z-index: 10;
   object-fit: cover;
 }
@@ -180,54 +191,7 @@ nav ul li a:hover {
   color: white;
 }
 
-.typing-container {
-  position: absolute;
-  top: 37%;
-  left: 12%;
-  transform: translateY(-50%);
-  z-index: 100;
-  text-align: left;
-  min-width: 600px;
-}
-
-.intro-text {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 5px;
-}
-
-.highlight {
-  color: #FA8A00;
-}
-
-.dynamic-line {
-  display: flex;
-  align-items: flex-start;
-  gap: 15px;
-}
-
-.small-text {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-top: 8px;
-}
-
-.dynamic-text {
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: #FA8A00;
-  margin: 0;
-  line-height: 1;
-}
-
-.cursor {
-  font-weight: 100;
-  font-size: 3.5rem;
-  color: #ffffff;
-  animation: blink 1s step-end infinite;
-}
+/* Fluid typography classes removed (now handled by Tailwind @theme) */
 
 @keyframes blink {
 
@@ -255,9 +219,16 @@ nav ul li a:hover {
   position: absolute;
   top: 0;
   left: 0;
+  white-space: normal;
   transform-style: preserve-3d;
   transform-origin: 50% 100%;
   animation: cube-spin 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@media (min-width: 769px) {
+  .cuboid-text {
+    white-space: nowrap;
+  }
 }
 
 @keyframes cube-spin {
