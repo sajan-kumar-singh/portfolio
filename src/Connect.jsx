@@ -1,5 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
+import github from './assets/github.png';
+import insta from './assets/instagram.png';
+import docker from './assets/social.png';
+import react from './assets/programing.png';
+import microservices from './assets/R.png';
+import aws from './assets/amazon-web-services-logo-d111.png';
+
+const statsData = [
+  { id: 1, img: github, limit: 150, invert: true },
+  { id: 2, img: insta, limit: 1200, invert: false },
+  { id: 3, img: docker, limit: 50, invert: false },
+  { id: 4, img: react, limit: 100, invert: false },
+  { id: 5, img: microservices, limit: 20, invert: true },
+  { id: 6, img: aws, limit: 10, invert: false },
+];
+
+const StatItem = ({ img, limit, invert }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const duration = 2000;
+    const increment = limit / (duration / 16);
+
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= limit) {
+        setCount(limit);
+        clearInterval(timer);
+      } else {
+        setCount(Math.ceil(start));
+      }
+    }, 16);
+
+    return () => clearInterval(timer);
+  }, [limit]);
+
+  return (
+    <div className="flex flex-col items-center gap-2 p-4 min-w-[80px]">
+      <img
+        src={img}
+        alt="stat-icon"
+        className="w-12 h-12 object-contain"
+        style={invert ? { filter: 'invert(1)' } : {}}
+      />
+      <span className="text-2xl font-bold text-white">{count}+</span>
+    </div>
+  );
+};
 
 function Connect() {
   const [step, setStep] = useState(1);
@@ -50,9 +99,14 @@ function Connect() {
   };
 
   return (
-    <>
+    <div style={{ marginTop: '100px' }}>
+      <div className="flex lg:hidden flex-wrap justify-center gap-6 p-6" style={{ marginBottom: '50px' }}>
+        {statsData.map(stat => (
+          <StatItem key={stat.id} img={stat.img} limit={stat.limit} invert={stat.invert} />
+        ))}
+      </div>
       <div className="lg:hidden p-6 flex justify-center pb-20">
-        <form className="w-full min-w-[23rem] max-w-md flex flex-col gap-4 mt-10" onSubmit={(e) => e.preventDefault()}>
+        <form className="w-full min-w-[21rem] max-w-md flex flex-col gap-4 mt-10" onSubmit={(e) => e.preventDefault()}>
 
           {step === 1 && (
             <>
@@ -200,7 +254,7 @@ function Connect() {
           <p>Let's get in touch!</p>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

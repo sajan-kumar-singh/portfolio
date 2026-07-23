@@ -72,7 +72,7 @@ function App() {
         </div>
 
         <nav
-          className={`nav-bar fixed lg:static top-0 transition-[right] duration-300 ease-in-out z-[1000] lg:z-auto flex-col lg:flex-row justify-center items-center h-screen lg:h-auto !w-[250px] lg:!w-[60%] !bg-black/95 lg:!bg-white/10 !rounded-none lg:!rounded-[50px] !border-none lg:!border-solid lg:!border lg:!border-white/20 ${isSidebarOpen ? 'right-0' : '-right-full'} lg:right-auto`}
+          className={`nav-bar fixed lg:static top-0 transition-[right] duration-300 ease-in-out z-[1000] lg:z-auto flex-col lg:flex-row justify-center items-center h-screen lg:h-auto !w-[250px] lg:!w-[60%] !bg-black/70 backdrop-blur-md lg:!bg-white/10 !rounded-none lg:!rounded-[50px] !border-none lg:!border-solid lg:!border lg:!border-white/20 ${isSidebarOpen ? 'right-0' : '-right-full'} lg:right-auto`}
         >
           <ul className="nav-links !flex-col lg:!flex-row !justify-center lg:!justify-evenly items-center gap-10 lg:gap-0 h-full lg:h-auto w-full">
             <li><Link to="/portfolio" onClick={closeSidebar}>Portfolio</Link></li>
