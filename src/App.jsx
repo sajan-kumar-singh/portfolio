@@ -62,14 +62,19 @@ function App() {
           <Link to="/">Home</Link>
         </div>
         
-        <div className={`hamburger ${isSidebarOpen ? 'active' : ''}`} onClick={toggleSidebar}>
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
+        <div 
+          className="flex lg:hidden flex-col gap-[6px] z-[1001] cursor-pointer" 
+          onClick={toggleSidebar}
+        >
+          <span className={`w-[25px] h-[3px] bg-white rounded-sm transition-all duration-300 ${isSidebarOpen ? 'translate-y-[9px] rotate-45' : ''}`}></span>
+          <span className={`w-[25px] h-[3px] bg-white rounded-sm transition-all duration-300 ${isSidebarOpen ? 'opacity-0' : ''}`}></span>
+          <span className={`w-[25px] h-[3px] bg-white rounded-sm transition-all duration-300 ${isSidebarOpen ? '-translate-y-[9px] -rotate-45' : ''}`}></span>
         </div>
 
-        <nav className={`nav-bar ${isSidebarOpen ? 'active' : ''}`}>
-          <ul className="nav-links">
+        <nav 
+          className={`nav-bar fixed lg:static top-0 transition-[right] duration-300 ease-in-out z-[1000] lg:z-auto flex-col lg:flex-row justify-center items-center h-screen lg:h-auto !w-[250px] lg:!w-[60%] !bg-black/95 lg:!bg-white/10 !rounded-none lg:!rounded-[50px] !border-none lg:!border-solid lg:!border lg:!border-white/20 ${isSidebarOpen ? 'right-0' : '-right-full'} lg:right-auto`}
+        >
+          <ul className="nav-links !flex-col lg:!flex-row !justify-center lg:!justify-evenly items-center gap-10 lg:gap-0 h-full lg:h-auto w-full">
             <li><Link to="/portfolio" onClick={closeSidebar}>Portfolio</Link></li>
             <li><Link to="/about" onClick={closeSidebar}>About</Link></li>
             <li><Link to="/connect" onClick={closeSidebar}>Connect</Link></li>
