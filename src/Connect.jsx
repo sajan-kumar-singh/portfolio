@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
-import github from './assets/github.png';
-import insta from './assets/instagram.png';
-import docker from './assets/social.png';
-import react from './assets/programing.png';
-import microservices from './assets/R.png';
-import aws from './assets/amazon-web-services-logo-d111.png';
+import insta from './assets/insta.png';
+import twitter from './assets/twitter.png';
+import youtube from './assets/youtube.png';
+import linkedin from './assets/icons8-linkedin-96.png';
 
 const statsData = [
-  { id: 1, img: github, limit: 150, invert: true },
-  { id: 2, img: insta, limit: 1200, invert: false },
-  { id: 3, img: docker, limit: 50, invert: false },
-  { id: 4, img: react, limit: 100, invert: false },
-  { id: 5, img: microservices, limit: 20, invert: true },
-  { id: 6, img: aws, limit: 10, invert: false },
+  { id: 1, img: twitter, limit: 3, invert: false, url: 'https://x.com/SajanKu77443416' },
+  { id: 2, img: linkedin, limit: 250, invert: false, url: 'https://www.linkedin.com/in/sajannkumarssingh/' },
+  { id: 3, img: insta, limit: 750, invert: false, url: 'https://www.instagram.com/theimperfectace/' },
+  { id: 4, img: youtube, limit: 2450, invert: false, url: 'https://www.youtube.com/@MyIdealWorld' },
 ];
 
-const StatItem = ({ img, limit, invert }) => {
+const StatItem = ({ img, limit, invert, url }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -39,12 +35,14 @@ const StatItem = ({ img, limit, invert }) => {
 
   return (
     <div className="flex flex-col items-center gap-2 p-4 min-w-[80px]">
-      <img
-        src={img}
-        alt="stat-icon"
-        className="w-12 h-12 object-contain"
-        style={invert ? { filter: 'invert(1)' } : {}}
-      />
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        <img
+          src={img}
+          alt="stat-icon"
+          className="w-12 h-12 object-contain hover:scale-110 transition-transform cursor-pointer"
+          style={invert ? { filter: 'invert(1)' } : {}}
+        />
+      </a>
       <span className="text-2xl font-bold text-white">{count}+</span>
     </div>
   );
@@ -102,11 +100,11 @@ function Connect() {
     <div style={{ marginTop: '100px' }}>
       <div className="flex lg:hidden flex-wrap justify-center gap-6 p-6" style={{ marginBottom: '50px' }}>
         {statsData.map(stat => (
-          <StatItem key={stat.id} img={stat.img} limit={stat.limit} invert={stat.invert} />
+          <StatItem key={stat.id} img={stat.img} limit={stat.limit} invert={stat.invert} url={stat.url} />
         ))}
       </div>
       <div className="lg:hidden p-6 flex justify-center pb-20">
-        <form className="w-full min-w-[21rem] max-w-md flex flex-col gap-4 mt-10" onSubmit={(e) => e.preventDefault()}>
+        <form className="w-full min-w-[18rem] max-w-md flex flex-col gap-4 mt-10" onSubmit={(e) => e.preventDefault()}>
 
           {step === 1 && (
             <>

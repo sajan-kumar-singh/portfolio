@@ -63,7 +63,7 @@ function App() {
         </div>
 
         <div
-          className="flex lg:hidden flex-col gap-[6px] z-[1001] cursor-pointer"
+          className="flex lg:hidden flex-col justify-center items-center gap-[6px] w-[50px] h-[50px] z-[1001] cursor-pointer bg-white/10 backdrop-blur-md rounded-full border border-solid border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.1)] transition-all duration-300"
           onClick={toggleSidebar}
         >
           <span className={`w-[25px] h-[3px] bg-white rounded-sm transition-all duration-300 ${isSidebarOpen ? 'translate-y-[9px] rotate-45' : ''}`}></span>
