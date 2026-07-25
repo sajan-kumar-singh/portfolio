@@ -1,0 +1,31 @@
+{
+  "experiences": [
+    {
+      "leftSide": {
+        "title": "valuefy",
+        "location": "San Francisco, CA",
+        "timeline": "2023 - Present"
+      },
+      "rightSide": [
+        "Spearheaded the development of a real-time data visualization dashboard.",
+        "Optimized database queries, reducing load times by 40%.",
+        "Implemented seamless integrations with multiple third-party APIs.",
+        "Led a team of 4 engineers in migrating the legacy codebase to React.",
+        "Increased user retention by delivering a highly responsive UI/UX."
+      ]
+    },
+    {
+      "leftSide": {
+        "title": "TechCorp",
+        "location": "New York, NY",
+        "timeline": "2020 - 2023"
+      },
+      "rightSide": [
+        "Architected scalable microservices using Node.js and Docker.",
+        "Reduced infrastructure costs by 20% through AWS resource optimization.",
+        "Mentored junior developers and conducted code reviews.",
+        "Integrated CI/CD pipelines to streamline deployments."
+      ]
+    }
+  ]
+}
