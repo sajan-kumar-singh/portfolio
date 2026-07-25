@@ -12,7 +12,7 @@ import aws from './assets/amazon-web-services-logo-d111.png';
 import cursor from './assets/Cursor-Ai-Logo-PNG-SVG-Vector.png';
 import leetcode from './assets/leetcode-logo_brandlogos.net_c4kgx.png';
 import ai from './assets/robot-ai.png';
-import Achievements from './Achievements';
+import About from './About';
 import Portfolio from './Portfolio';
 import Connect from './Connect';
 import TypingText from './TypingText';
@@ -94,7 +94,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/about" element={<Achievements />} />
+        <Route path="/about" element={<About />} />
         <Route path="/connect" element={<Connect />} />
       </Routes>
     </BrowserRouter>

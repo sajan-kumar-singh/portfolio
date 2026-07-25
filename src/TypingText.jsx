@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './index.css';
 
 const phrases = [
@@ -23,6 +24,7 @@ const TypingText = () => {
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let timer;
@@ -55,7 +57,10 @@ const TypingText = () => {
 
   return (
     <div className="absolute top-fluid-top left-[5%] lg:left-[12%] -translate-y-1/2 z-[100] text-left w-[90%] lg:w-auto">
-      <h1 className="text-fluid-h2 font-bold text-white mb-1">
+      <h1 
+        className="text-fluid-h2 font-bold text-white mb-1 cursor-pointer hover:opacity-80 transition-opacity"
+        onClick={() => navigate('/about')}
+      >
         Hi, <span className="text-[#FA8A00]">SAJAN</span> here!
       </h1>
       <div className="flex items-start gap-4">
