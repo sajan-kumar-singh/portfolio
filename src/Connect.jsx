@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
 import './index.css';
 import insta from './assets/insta.png';
 import twitter from './assets/twitter.png';
@@ -14,8 +15,15 @@ const statsData = [
 
 const StatItem = ({ img, limit, invert, url }) => {
   const [count, setCount] = useState(0);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
+    // if (prefersReducedMotion) {
+    //   // If they prefer reduced motion, skip the animation and set the final limit immediately
+    //   setCount(limit);
+    //   return;
+    // }
+
     let start = 0;
     const duration = 2000;
     const increment = limit / (duration / 16);
@@ -31,7 +39,7 @@ const StatItem = ({ img, limit, invert, url }) => {
     }, 16);
 
     return () => clearInterval(timer);
-  }, [limit]);
+  }, [limit, prefersReducedMotion]);
 
   return (
     <div className="flex flex-col items-center gap-2 p-4 min-w-[80px]">

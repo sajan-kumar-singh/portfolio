@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import './index.css';
 import foregroundImg from './assets/Gemini_Generated_Image_qm97ngqm97ngqm97-removebg-preview.png';
@@ -46,6 +47,15 @@ function Home() {
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  useEffect(() => {
+    // if (prefersReducedMotion) {
+    //   document.body.classList.add('reduce-motion');
+    // } else {
+    //   document.body.classList.remove('reduce-motion');
+    // }
+  }, [prefersReducedMotion]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
