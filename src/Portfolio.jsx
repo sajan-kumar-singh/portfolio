@@ -134,7 +134,7 @@ function Portfolio() {
   const lineY = useTransform(
     scrollY,
     [0, lineExitStart, lineExitEnd],
-    ['0px', '0px', '-2150px']
+    ['0px', '0px', '-2800px']
   );
 
   // Fade out the residual box-shadow exactly when it reaches 0 height
@@ -208,7 +208,7 @@ function Portfolio() {
               height: '100px',
               backgroundColor: '#FFF',
               borderRadius: '50%',
-              boxShadow: '0 0 40px 15px rgba(255, 255, 255, 0.6), 0 0 80px 30px rgba(250, 138, 0, 0.4)',
+              boxShadow: '0 0 40px 15px rgba(255, 255, 255, 0.6), 0 0 80px 30px rgba(255, 255, 255, 0.4)',
               zIndex: 10
             }}
           ></div>
