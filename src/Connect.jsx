@@ -6,13 +6,13 @@ import insta from './assets/insta.png';
 import twitter from './assets/twitter.png';
 import youtube from './assets/youtube.png';
 import linkedin from './assets/icons8-linkedin-96.png';
-import iphoneFrame from './assets/iphone-frame.png';
-import character1 from './assets/character1.png';
-import character2 from './assets/character2.png';
-import character3 from './assets/character3.png';
-import character4 from './assets/character4.png';
-import character5 from './assets/character5.png';
-import character6 from './assets/character6.png';
+import iphoneFrame from './assets/iphone-frame.webp';
+import character1 from './assets/character1.webp';
+import character2 from './assets/character2.webp';
+import character3 from './assets/character3.webp';
+import character4 from './assets/character4.webp';
+import character5 from './assets/character5.webp';
+import character6 from './assets/character6.webp';
 
 const statsData = [
   { id: 1, img: twitter, limit: 3, invert: false, url: 'https://x.com/SajanKu77443416' },
@@ -421,10 +421,10 @@ function Connect() {
               {/* Screen Area */}
               <div style={{
                 position: 'absolute',
-                top: '12px',
-                left: '12px',
-                right: '12px',
-                bottom: '12px',
+                top: '50px',
+                left: '19px',
+                right: '19px',
+                bottom: '45px',
                 backgroundColor: '#000', // Screen background color (black)
                 borderRadius: '35px',
                 overflow: 'hidden',
@@ -433,24 +433,34 @@ function Connect() {
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                {/* App Grid */}
+                {/* App Grid & Header */}
                 <motion.div
                   style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(2, 1fr)',
-                    gap: '30px',
-                    padding: '30px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
                     width: '100%',
                     scale: iconsScale
                   }}
                 >
-                  {statsData.map(stat => (
-                    <a key={stat.id} href={stat.url} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 cursor-pointer hover:scale-110 transition-transform">
-                      <div className="w-20 h-20 bg-gray-800 rounded-2xl flex items-center justify-center shadow-lg overflow-hidden">
-                        <img src={stat.img} alt="app-icon" className="w-12 h-12 object-contain" style={stat.invert ? { filter: 'invert(1)' } : {}} />
-                      </div>
-                    </a>
-                  ))}
+                  <h3 className="text-white text-lg font-bold mb-6 font-sans tracking-wide">Follow me here</h3>
+                  <div
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(2, 1fr)',
+                      gap: '30px',
+                      padding: '0 30px',
+                      width: '100%',
+                    }}
+                  >
+                    {statsData.map(stat => (
+                      <a key={stat.id} href={stat.url} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 cursor-pointer hover:scale-110 transition-transform">
+                        <div className="w-20 h-20 bg-gray-800 rounded-2xl flex items-center justify-center shadow-lg overflow-hidden">
+                          <img src={stat.img} alt="app-icon" className="w-12 h-12 object-contain" style={stat.invert ? { filter: 'invert(1)' } : {}} />
+                        </div>
+                      </a>
+                    ))}
+                  </div>
                 </motion.div>
 
                 {/* "Screen Off" Black Overlay */}
@@ -490,14 +500,14 @@ function Connect() {
 
               {/* Interactive Avatar Popups */}
               <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}>
-                <AnimatePresence mode="wait">
+                <AnimatePresence>
                   {focusedField && avatarConfig[focusedField] && (
                     <motion.div
                       key={focusedField}
                       initial={{ opacity: 0, scale: 0.8, x: -20 }}
                       animate={{ opacity: 1, scale: 1, x: 0 }}
                       exit={{ opacity: 0, scale: 0.8, x: -20 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
                       style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                     >
                       {/* Speech Bubble */}
