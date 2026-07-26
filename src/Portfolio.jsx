@@ -4,7 +4,7 @@ import portfolioData from './portfolioData.json';
 import './index.css';
 
 // Pre-calculate the scroll positions for each experience
-let currentScroll = 750;
+let currentScroll = 1350;
 const experienceBlocks = portfolioData.experiences.map((exp) => {
   const startScroll = currentScroll;
   const leftEnd = startScroll + 300; // 3 items * 100px
@@ -28,9 +28,11 @@ const experienceBlocks = portfolioData.experiences.map((exp) => {
 const purpleExitStart = currentScroll;
 const purpleExitEnd = purpleExitStart + 450;
 const lineExitStart = purpleExitEnd;
-const lineExitEnd = lineExitStart + 300;
+const lineExitEnd = lineExitStart + 600; // Increased distance to make the line move slower
+const ballExitStart = lineExitEnd;
+const ballExitEnd = ballExitStart + 600; // Increased distance to make the ball move slower
 
-const totalScrollHeight = lineExitEnd + 500; // Add padding at the very end
+const totalScrollHeight = ballExitEnd + 500; // Add padding at the very end
 
 const ExperienceBlock = ({ scrollY, exp }) => {
   // Fade in left items, then fade them out at the end
@@ -95,7 +97,7 @@ const ExperienceBlock = ({ scrollY, exp }) => {
 };
 
 const ExperienceTag = ({ scrollY }) => {
-  const start = 750; // Starts when first experience starts
+  const start = 1350; // Starts when first experience starts
   const end = purpleExitStart; // Ends exactly when last experience fades out
 
   const opacity = useTransform(scrollY, [start, start + 100, end - 100, end], [0, 1, 1, 0]);
@@ -122,11 +124,18 @@ function Portfolio() {
   const [isDesktop, setIsDesktop] = useState(true);
   const { scrollY } = useScroll();
 
+  // Ball comes up from the bottom of the screen to the center, stays, then shoots up at the end
+  const ballY = useTransform(
+    scrollY,
+    [0, 300, ballExitStart, ballExitEnd],
+    ['80vh', '0vh', '0vh', '-120vh']
+  );
+
   // Line shrinks back to 0px after the purple background leaves
   const lineHeight = useTransform(
     scrollY,
-    [0, 300, lineExitStart, lineExitEnd],
-    ['0px', '350px', '350px', '0px']
+    [0, 300, 900, lineExitStart, lineExitEnd],
+    ['0px', '0px', '350px', '350px', '0px']
   );
 
   // To make the line shrink UPWARDS (detaching from the ball), we must translate it UP 
@@ -134,20 +143,20 @@ function Portfolio() {
   const lineY = useTransform(
     scrollY,
     [0, lineExitStart, lineExitEnd],
-    ['0px', '0px', '-2800px']
+    ['0px', '0px', '-100vh']
   );
 
-  // Fade out the residual box-shadow exactly when it reaches 0 height
+  // Hide the residual box-shadow when height is 0 (at start and end)
   const lineOpacity = useTransform(
     scrollY,
-    [0, lineExitEnd - 10, lineExitEnd],
-    [1, 1, 0]
+    [0, 300, 310, lineExitEnd - 10, lineExitEnd],
+    [0, 0, 1, 1, 0]
   );
 
-  // Purple height initially fills the screen
+  // Purple height grows to fill the screen
   const purpleHeight = useTransform(
     scrollY,
-    [0, 300, 750],
+    [0, 900, 1350],
     ['0vh', '0vh', '100vh']
   );
 
@@ -202,16 +211,17 @@ function Portfolio() {
             <ExperienceBlock key={index} scrollY={scrollY} exp={exp} />
           ))}
 
-          <div
+          <motion.div
             style={{
               width: '100px',
               height: '100px',
               backgroundColor: '#FFF',
               borderRadius: '50%',
               boxShadow: '0 0 40px 15px rgba(255, 255, 255, 0.6), 0 0 80px 30px rgba(255, 255, 255, 0.4)',
-              zIndex: 10
+              zIndex: 10,
+              y: ballY
             }}
-          ></div>
+          ></motion.div>
 
         </div>
       ) : (

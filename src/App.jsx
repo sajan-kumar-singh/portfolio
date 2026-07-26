@@ -68,7 +68,7 @@ function App() {
   return (
     <BrowserRouter>
       <header className="header-container">
-        <div className="home-logo">
+        <div className="home-logo bg-white/10 backdrop-blur-md border border-solid border-white/20 rounded-[50px] shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
           <Link to="/">Home</Link>
         </div>
 
