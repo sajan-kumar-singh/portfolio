@@ -10,6 +10,9 @@ import iphoneFrame from './assets/iphone-frame.png';
 import character1 from './assets/character1.png';
 import character2 from './assets/character2.png';
 import character3 from './assets/character3.png';
+import character4 from './assets/character4.png';
+import character5 from './assets/character5.png';
+import character6 from './assets/character6.png';
 
 const statsData = [
   { id: 1, img: twitter, limit: 3, invert: false, url: 'https://x.com/SajanKu77443416' },
@@ -38,6 +41,24 @@ const avatarConfig = {
     message: "Write wisely to grab our attention.",
     avatarStyles: { width: '140px', left: '10px', top: '-33px', zIndex: 40, transform: 'rotate(0deg)' },
     bubbleStyles: { left: '-135px', top: '-60px', zIndex: 40 }
+  },
+  datetime: {
+    img: character4, // Placeholder
+    message: "I'll choose only one so fill accordingly.",
+    avatarStyles: { width: '460px', right: '-270px', bottom: '105px', zIndex: 40, transform: 'rotate(0deg)' },
+    bubbleStyles: { right: '-50px', bottom: '545px', zIndex: 40 }
+  },
+  service: {
+    img: character5, // Placeholder
+    message: "Payment method and meeting date I'll tell later.",
+    avatarStyles: { width: '200px', left: '-55px', bottom: '90px', zIndex: 40, transform: 'rotate(2deg)' },
+    bubbleStyles: { left: '-230px', bottom: '290px', zIndex: 40 }
+  },
+  confirm: {
+    img: character6, // Placeholder
+    message: "Thanks for confirming! You can submit now.",
+    avatarStyles: { width: '140px', right: '28px', bottom: '75px', zIndex: 40, transform: 'rotate(1deg)' },
+    bubbleStyles: { right: '80px', bottom: '230px', zIndex: 40 }
   }
 };
 
@@ -153,6 +174,12 @@ function Connect() {
     setMinDate(`${yyyy}-${mm}-${dd}`);
   }, []);
 
+  const handleConfirmToggle = (val) => {
+    setIsConfirmed(val);
+    if (val) setFocusedField('confirm');
+    else setFocusedField(null);
+  };
+
   const handleAddSlot = () => {
     if (timeSlots.length < 5) {
       setTimeSlots([...timeSlots, { date: '', time: '' }]);
@@ -239,6 +266,8 @@ function Connect() {
                       min={minDate}
                       value={slot.date}
                       onChange={(e) => handleSlotChange(index, 'date', e.target.value)}
+                      onFocus={() => setFocusedField('datetime')}
+                      onBlur={() => setFocusedField(null)}
                       required
                     />
                     <input
@@ -246,6 +275,8 @@ function Connect() {
                       className="custom-datetime-input"
                       value={slot.time}
                       onChange={(e) => handleSlotChange(index, 'time', e.target.value)}
+                      onFocus={() => setFocusedField('datetime')}
+                      onBlur={() => setFocusedField(null)}
                       required
                     />
                   </div>
@@ -283,7 +314,12 @@ function Connect() {
                 id="service"
                 className="custom-select-input"
                 value={service}
-                onChange={(e) => setService(e.target.value)}
+                onChange={(e) => {
+                  setService(e.target.value);
+                  e.target.blur();
+                }}
+                onFocus={() => setFocusedField('service')}
+                onBlur={() => setFocusedField(null)}
                 required
               >
                 <option value="" disabled hidden>Select a service...</option>
@@ -298,14 +334,19 @@ function Connect() {
           </div>
 
           {/* Confirmation Checkbox */}
-          <div className="flex items-center gap-4 mt-2 p-4 transition-colors cursor-pointer" onClick={() => setIsConfirmed(!isConfirmed)}>
+          <div
+            className="flex items-center gap-4 mt-2 p-4 transition-colors cursor-pointer"
+            onClick={() => handleConfirmToggle(!isConfirmed)}
+            onMouseEnter={() => { if (isConfirmed) setFocusedField('confirm') }}
+            onMouseLeave={() => setFocusedField(null)}
+          >
             <div className="relative flex items-center justify-center flex-shrink-0">
               <input
                 type="checkbox"
                 id="confirm"
                 className="peer w-5 h-5 appearance-none border-2 border-gray-500 rounded-md checked:border-blue-500 checked:bg-blue-500 transition-all cursor-pointer"
                 checked={isConfirmed}
-                onChange={(e) => setIsConfirmed(e.target.checked)}
+                onChange={(e) => handleConfirmToggle(e.target.checked)}
                 onClick={(e) => e.stopPropagation()}
               />
               <svg className="absolute w-3 h-3 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
