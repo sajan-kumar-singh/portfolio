@@ -13,6 +13,8 @@ import character3 from './assets/character3.webp';
 import character4 from './assets/character4.webp';
 import character5 from './assets/character5.webp';
 import character6 from './assets/character6.webp';
+import character7 from './assets/character7.webp';
+import character8 from './assets/character8.webp';
 
 const statsData = [
   { id: 1, img: twitter, limit: 3, invert: false, url: 'https://x.com/SajanKu77443416' },
@@ -60,6 +62,22 @@ const avatarConfig = {
     avatarStyles: { width: '140px', right: '28px', bottom: '75px', zIndex: 40, transform: 'rotate(1deg)' },
     bubbleStyles: { right: '80px', bottom: '230px', zIndex: 40 }
   }
+};
+
+// Configuration for the Success State
+const successConfig = {
+  img: character7,
+  message: "Thank you! We will respond within 24 Hours!!",
+  avatarStyles: { width: '300px', objectFit: 'contain', margin: '0 auto', transform: 'rotate(0deg)' },
+  messageStyles: { fontSize: '1.8rem', color: '#ffffffff', marginTop: '20px', fontWeight: 'bold', textAlign: 'center', whiteSpace: 'nowrap' }
+};
+
+// Configuration for the Error State
+const errorConfig = {
+  img: character8, // Using a placeholder for now
+  message: "We are facing some issues, please try later.",
+  avatarStyles: { width: '650px', objectFit: 'contain', margin: '0 auto', transform: 'rotate(0deg)' },
+  messageStyles: { fontSize: '1.8rem', color: '#f87171', marginTop: '20px', fontWeight: 'bold', textAlign: 'center', whiteSpace: 'nowrap' }
 };
 
 const StatItem = ({ img, limit, invert, url }) => {
@@ -164,6 +182,8 @@ function Connect() {
   const [service, setService] = useState('');
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [minDate, setMinDate] = useState('');
+  const [submitStatus, setSubmitStatus] = useState(null); // null, 'submitting', 'success', 'error'
+  const [submitMessage, setSubmitMessage] = useState('');
 
   useEffect(() => {
     const today = new Date();
@@ -205,174 +225,202 @@ function Connect() {
     if (isStep1Valid) setStep(2);
   };
 
-  const renderForm = (isDesktop = false) => (
-    <form
-      action="https://api.web3forms.com/submit"
-      method="POST"
-      className="w-full min-w-[18rem] max-w-md flex flex-col gap-4 mt-10"
-      style={isDesktop ? { margin: '20px 0px 20px 80px' } : {}}
-    >
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitStatus('submitting');
 
-      {step === 1 && (
-        <>
-          {/* Header */}
-          <div className="flex items-center gap-4 border-gray-700/50 pb-4">
-            <h2 className="text-xl font-semibold text-white tracking-wide m-0">Personal Details</h2>
-          </div>
-          <div className="input-group !mb-2">
-            <input type="text" name="name" id="name" className={`custom-input ${name ? 'has-value' : ''}`} placeholder=" " value={name} onChange={(e) => setName(e.target.value)} onFocus={() => setFocusedField('name')} onBlur={() => setFocusedField(null)} required />
-            <label htmlFor="name" className="custom-label">Name</label>
-          </div>
+    const formData = new FormData(e.target);
 
-          <div className="input-group !mb-2">
-            <input type="email" name="email" id="email" className={`custom-input ${email ? 'has-value' : ''}`} placeholder=" " value={email} onChange={(e) => setEmail(e.target.value)} onFocus={() => setFocusedField('email')} onBlur={() => setFocusedField(null)} required />
-            <label htmlFor="email" className="custom-label">Email</label>
-          </div>
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
 
-          <div className="input-group !mb-2">
-            <textarea name="message" id="message" rows="4" className={`custom-input resize-none ${message ? 'has-value' : ''}`} placeholder=" " value={message} onChange={(e) => setMessage(e.target.value)} onFocus={() => setFocusedField('message')} onBlur={() => setFocusedField(null)} required></textarea>
-            <label htmlFor="message" className="custom-label">Message</label>
-          </div>
+      const data = await response.json();
 
-          <button type="button" onClick={handleNext} className="custom-submit-btn w-full !py-3 !text-lg !mt-2 shadow-lg hover:shadow-white/10" disabled={!isStep1Valid}>Next</button>
-        </>
-      )}
+      if (data.success) {
+        setSubmitStatus('success');
+        setSubmitMessage("Thank you! Your booking details have been submitted successfully.");
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setSubmitMessage("An error occurred. Please try again later.");
+    }
+  };
 
-      {step === 2 && (
-        <div className="flex flex-col gap-8 text-gray-200 animate-fade-in w-full max-w-md mx-auto">
+  const renderForm = (isDesktop = false) => {
+    return (
+      <form
+        onSubmit={handleSubmit}
+        className="w-full min-w-[18rem] max-w-md flex flex-col gap-4 mt-10"
+        style={isDesktop ? { margin: '20px 0px 20px 80px' } : {}}
+      >
 
-          {/* Header */}
-          <div className="flex items-center gap-4 border-gray-700/50 pb-4">
-            <button
-              type="button"
-              onClick={() => setStep(1)}
-              className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700 transition-all cursor-pointer"
-              title="Go back"
-            >
-              &larr;
-            </button>
-            <h2 className="text-xl font-semibold text-white tracking-wide m-0">Booking Details</h2>
-          </div>
-
-          {/* Time Slots */}
-          <div className="flex flex-col gap-4">
-            <label className="block text-sm text-gray-400 uppercase tracking-wider font-semibold">Your free time slot</label>
-            <div className="flex flex-col gap-3">
-              {timeSlots.map((slot, index) => (
-                <div key={index} className="flex gap-2 items-center group">
-                  <div className="flex gap-3 flex-1">
-                    <input
-                      type="date"
-                      className="custom-datetime-input"
-                      min={minDate}
-                      value={slot.date}
-                      onChange={(e) => handleSlotChange(index, 'date', e.target.value)}
-                      onFocus={() => setFocusedField('datetime')}
-                      onBlur={() => setFocusedField(null)}
-                      required
-                    />
-                    <input
-                      type="time"
-                      className="custom-datetime-input"
-                      value={slot.time}
-                      onChange={(e) => handleSlotChange(index, 'time', e.target.value)}
-                      onFocus={() => setFocusedField('datetime')}
-                      onBlur={() => setFocusedField(null)}
-                      required
-                    />
-                  </div>
-                  {timeSlots.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveSlot(index)}
-                      className="text-gray-500 hover:text-red-400 w-8 h-8 rounded-full hover:bg-red-400/10 transition-all flex-shrink-0 flex items-center justify-center cursor-pointer"
-                      aria-label="Remove slot"
-                      title="Remove this slot"
-                    >
-                      ✕
-                    </button>
-                  )}
-                </div>
-              ))}
+        {step === 1 && (
+          <>
+            {/* Header */}
+            <div className="flex items-center gap-4 border-gray-700/50 pb-4">
+              <h2 className="text-xl font-semibold text-white tracking-wide m-0">Personal Details</h2>
             </div>
-            {timeSlots.length < 5 && (
+            <div className="input-group !mb-2">
+              <input type="text" name="name" id="name" className={`custom-input ${name ? 'has-value' : ''}`} placeholder=" " value={name} onChange={(e) => setName(e.target.value)} onFocus={() => setFocusedField('name')} onBlur={() => setFocusedField(null)} required />
+              <label htmlFor="name" className="custom-label">Name</label>
+            </div>
+
+            <div className="input-group !mb-2">
+              <input type="email" name="email" id="email" className={`custom-input ${email ? 'has-value' : ''}`} placeholder=" " value={email} onChange={(e) => setEmail(e.target.value)} onFocus={() => setFocusedField('email')} onBlur={() => setFocusedField(null)} required />
+              <label htmlFor="email" className="custom-label">Email</label>
+            </div>
+
+            <div className="input-group !mb-2">
+              <textarea name="message" id="message" rows="4" className={`custom-input resize-none ${message ? 'has-value' : ''}`} placeholder=" " value={message} onChange={(e) => setMessage(e.target.value)} onFocus={() => setFocusedField('message')} onBlur={() => setFocusedField(null)} required></textarea>
+              <label htmlFor="message" className="custom-label">Message</label>
+            </div>
+
+            <button type="button" onClick={handleNext} className="custom-submit-btn w-full !py-3 !text-lg !mt-2 shadow-lg hover:shadow-white/10" disabled={!isStep1Valid}>Next</button>
+          </>
+        )}
+
+        {step === 2 && (
+          <div className="flex flex-col gap-8 text-gray-200 animate-fade-in w-full max-w-md mx-auto">
+
+            {/* Header */}
+            <div className="flex items-center gap-4 border-gray-700/50 pb-4">
               <button
                 type="button"
-                onClick={handleAddSlot}
-                className="add-slot-btn"
+                onClick={() => setStep(1)}
+                className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700 transition-all cursor-pointer"
+                title="Go back"
               >
-                <span className="text-lg leading-none">+</span> Add another slot
+                &larr;
               </button>
-            )}
-          </div>
+              <h2 className="text-xl font-semibold text-white tracking-wide m-0">Booking Details</h2>
+            </div>
 
-          {/* Service Selection */}
-          <div className="flex flex-col gap-4">
-            <label htmlFor="service" className="block text-sm text-gray-400 uppercase tracking-wider font-semibold">Service Required</label>
-            <div className="relative">
-              <select
-                name="service"
-                id="service"
-                className="custom-select-input"
-                value={service}
-                onChange={(e) => {
-                  setService(e.target.value);
-                  e.target.blur();
-                }}
-                onFocus={() => setFocusedField('service')}
-                onBlur={() => setFocusedField(null)}
-                required
-              >
-                <option value="" disabled hidden>Select a service...</option>
-                <option value="web">Web Development</option>
-                <option value="app">App Development</option>
-                <option value="seo">SEO Optimization</option>
-              </select>
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
-                ▼
+            {/* Time Slots */}
+            <div className="flex flex-col gap-4">
+              <label className="block text-sm text-gray-400 uppercase tracking-wider font-semibold">Your free time slot</label>
+              <div className="flex flex-col gap-3">
+                {timeSlots.map((slot, index) => (
+                  <div key={index} className="flex gap-2 items-center group">
+                    <div className="flex gap-3 flex-1">
+                      <input
+                        type="date"
+                        className="custom-datetime-input"
+                        min={minDate}
+                        value={slot.date}
+                        onChange={(e) => handleSlotChange(index, 'date', e.target.value)}
+                        onFocus={() => setFocusedField('datetime')}
+                        onBlur={() => setFocusedField(null)}
+                        required
+                      />
+                      <input
+                        type="time"
+                        className="custom-datetime-input"
+                        value={slot.time}
+                        onChange={(e) => handleSlotChange(index, 'time', e.target.value)}
+                        onFocus={() => setFocusedField('datetime')}
+                        onBlur={() => setFocusedField(null)}
+                        required
+                      />
+                    </div>
+                    {timeSlots.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveSlot(index)}
+                        className="text-gray-500 hover:text-red-400 w-8 h-8 rounded-full hover:bg-red-400/10 transition-all flex-shrink-0 flex items-center justify-center cursor-pointer"
+                        aria-label="Remove slot"
+                        title="Remove this slot"
+                      >
+                        ✕
+                      </button>
+                    )}
+                  </div>
+                ))}
+              </div>
+              {timeSlots.length < 5 && (
+                <button
+                  type="button"
+                  onClick={handleAddSlot}
+                  className="add-slot-btn"
+                >
+                  <span className="text-lg leading-none">+</span> Add another slot
+                </button>
+              )}
+            </div>
+
+            {/* Service Selection */}
+            <div className="flex flex-col gap-4">
+              <label htmlFor="service" className="block text-sm text-gray-400 uppercase tracking-wider font-semibold">Service Required</label>
+              <div className="relative">
+                <select
+                  name="service"
+                  id="service"
+                  className="custom-select-input"
+                  value={service}
+                  onChange={(e) => {
+                    setService(e.target.value);
+                    e.target.blur();
+                  }}
+                  onFocus={() => setFocusedField('service')}
+                  onBlur={() => setFocusedField(null)}
+                  required
+                >
+                  <option value="" disabled hidden>Select a service...</option>
+                  <option value="web">Web Development</option>
+                  <option value="app">App Development</option>
+                  <option value="seo">SEO Optimization</option>
+                </select>
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
+                  ▼
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Confirmation Checkbox */}
-          <div
-            className="flex items-center gap-4 mt-2 p-4 transition-colors cursor-pointer"
-            onClick={() => handleConfirmToggle(!isConfirmed)}
-            onMouseEnter={() => { if (isConfirmed) setFocusedField('confirm') }}
-            onMouseLeave={() => setFocusedField(null)}
-          >
-            <div className="relative flex items-center justify-center flex-shrink-0">
-              <input
-                type="checkbox"
-                id="confirm"
-                className="peer w-5 h-5 appearance-none border-2 border-gray-500 rounded-md checked:border-blue-500 checked:bg-blue-500 transition-all cursor-pointer"
-                checked={isConfirmed}
-                onChange={(e) => handleConfirmToggle(e.target.checked)}
-                onClick={(e) => e.stopPropagation()}
-              />
-              <svg className="absolute w-3 h-3 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
+            {/* Confirmation Checkbox */}
+            <div
+              className="flex items-center gap-4 mt-2 p-4 transition-colors cursor-pointer"
+              onClick={() => handleConfirmToggle(!isConfirmed)}
+              onMouseEnter={() => { if (isConfirmed) setFocusedField('confirm') }}
+              onMouseLeave={() => setFocusedField(null)}
+            >
+              <div className="relative flex items-center justify-center flex-shrink-0">
+                <input
+                  type="checkbox"
+                  id="confirm"
+                  className="peer w-5 h-5 appearance-none border-2 border-gray-500 rounded-md checked:border-blue-500 checked:bg-blue-500 transition-all cursor-pointer"
+                  checked={isConfirmed}
+                  onChange={(e) => handleConfirmToggle(e.target.checked)}
+                  onClick={(e) => e.stopPropagation()}
+                />
+                <svg className="absolute w-3 h-3 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <label htmlFor="confirm" className="text-gray-300 text-sm cursor-pointer select-none flex-1" onClick={(e) => e.preventDefault()}>
+                I confirm all details are correct and ready to proceed.
+              </label>
             </div>
-            <label htmlFor="confirm" className="text-gray-300 text-sm cursor-pointer select-none flex-1" onClick={(e) => e.preventDefault()}>
-              I confirm all details are correct and ready to proceed.
-            </label>
+
+            <button type="submit" className="custom-submit-btn w-full !py-3 !text-lg !mt-2 shadow-lg hover:shadow-white/10" disabled={!isStep2Valid || submitStatus === 'submitting'}>
+              {submitStatus === 'submitting' ? 'Submitting...' : 'Confirm Booking'}
+            </button>
           </div>
+        )}
 
-          <button type="submit" className="custom-submit-btn w-full !py-3 !text-lg !mt-2 shadow-lg hover:shadow-white/10" disabled={!isStep2Valid}>
-            Confirm Booking
-          </button>
-        </div>
-      )}
-
-      {/* Hidden inputs for Web3Forms access key and data preservation across steps */}
-      <input type="hidden" name="access_key" value={import.meta.env.VITE_WEB3FORMS_KEY} />
-      <input type="hidden" name="name" value={name} />
-      <input type="hidden" name="email" value={email} />
-      <input type="hidden" name="message" value={message} />
-      <input type="hidden" name="timeSlots" value={timeSlots.map((s, i) => `Slot ${i + 1}: ${s.date} at ${s.time}`).join(' | ')} />
-    </form>
-  );
+        {/* Hidden inputs for Web3Forms access key and data preservation across steps */}
+        <input type="hidden" name="access_key" value={import.meta.env.VITE_WEB3FORMS_KEY} />
+        <input type="hidden" name="name" value={name} />
+        <input type="hidden" name="email" value={email} />
+        <input type="hidden" name="message" value={message} />
+        <input type="hidden" name="timeSlots" value={timeSlots.map((s, i) => `Slot ${i + 1}: ${s.date} at ${s.time}`).join(' | ')} />
+      </form>
+    );
+  };
 
   return (
     <div style={{ marginTop: '100px' }}>
@@ -382,7 +430,23 @@ function Connect() {
         ))}
       </div>
       <div className="lg:hidden p-6 flex justify-center pb-20">
-        {renderForm()}
+        <AnimatePresence mode="wait">
+          {submitStatus === 'success' ? (
+            <motion.div key="success" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="flex flex-col items-center justify-center w-full mt-10">
+              <img src={successConfig.img} alt="Success Character" style={{ ...successConfig.avatarStyles }} />
+              <p style={{ ...successConfig.messageStyles }}>{successConfig.message}</p>
+            </motion.div>
+          ) : submitStatus === 'error' ? (
+            <motion.div key="error" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="flex flex-col items-center justify-center w-full mt-10">
+              <img src={errorConfig.img} alt="Error Character" style={{ ...errorConfig.avatarStyles }} />
+              <p style={{ ...errorConfig.messageStyles }}>{errorConfig.message}</p>
+            </motion.div>
+          ) : (
+            <motion.div key="form" initial={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full flex justify-center">
+              {renderForm()}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Desktop Animated Section */}
@@ -498,64 +562,92 @@ function Connect() {
                 justifyContent: 'center'
               }}
             >
-              <h1 className="text-5xl font-bold text-center text-white mb-2">Let's Connect</h1>
-              <p className="text-gray-400 mb-8">&nbsp;</p>
+              <AnimatePresence mode="wait">
+                {submitStatus === 'success' ? (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="flex flex-col items-center justify-center w-full"
+                  >
+                    <img src={successConfig.img} alt="Success Character" style={{ ...successConfig.avatarStyles }} />
+                    <p style={{ ...successConfig.messageStyles }}>{successConfig.message}</p>
+                  </motion.div>
+                ) : submitStatus === 'error' ? (
+                  <motion.div
+                    key="error"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="flex flex-col items-center justify-center w-full"
+                  >
+                    <img src={errorConfig.img} alt="Error Character" style={{ ...errorConfig.avatarStyles }} />
+                    <p style={{ ...errorConfig.messageStyles }}>{errorConfig.message}</p>
+                  </motion.div>
+                ) : (
+                  <motion.div key="form" initial={{ opacity: 1 }} exit={{ opacity: 0, y: -20 }} className="w-full flex flex-col items-center">
+                    <h1 className="text-5xl font-bold text-center text-white mb-2">Let's Connect</h1>
+                    <p className="text-gray-400 mb-8">&nbsp;</p>
 
-              <div className="bg-[#1a1a1a] p-8 rounded-[40px] border border-[#333] shadow-2xl w-full">
-                {renderForm(true)}
-              </div>
+                    <div className="bg-[#1a1a1a] p-8 rounded-[40px] border border-[#333] shadow-2xl w-full">
+                      {renderForm(true)}
+                    </div>
 
-              {/* Interactive Avatar Popups */}
-              <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}>
-                <AnimatePresence>
-                  {focusedField && avatarConfig[focusedField] && (
-                    <motion.div
-                      key={focusedField}
-                      initial={{ opacity: 0, scale: 0.8, x: -20 }}
-                      animate={{ opacity: 1, scale: 1, x: 0 }}
-                      exit={{ opacity: 0, scale: 0.8, x: -20 }}
-                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                    >
-                      {/* Speech Bubble */}
-                      <div
-                        className="bg-white text-black rounded-2xl shadow-xl font-medium text-sm"
-                        style={{
-                          position: 'absolute',
-                          padding: '5px',
-                          ...avatarConfig[focusedField].bubbleStyles
-                        }}
-                      >
-                        {avatarConfig[focusedField].message}
-                        {/* Little triangle tail for the speech bubble */}
-                        <div
-                          style={{
-                            position: 'absolute',
-                            bottom: '-8px',
-                            right: '20px',
-                            width: 0,
-                            height: 0,
-                            borderLeft: '10px solid transparent',
-                            borderRight: '10px solid transparent',
-                            borderTop: '10px solid white'
-                          }}
-                        />
-                      </div>
+                    {/* Interactive Avatar Popups */}
+                    <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}>
+                      <AnimatePresence>
+                        {focusedField && avatarConfig[focusedField] && (
+                          <motion.div
+                            key={focusedField}
+                            initial={{ opacity: 0, scale: 0.8, x: -20 }}
+                            animate={{ opacity: 1, scale: 1, x: 0 }}
+                            exit={{ opacity: 0, scale: 0.8, x: -20 }}
+                            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                          >
+                            {/* Speech Bubble */}
+                            <div
+                              className="bg-white text-black rounded-2xl shadow-xl font-medium text-sm"
+                              style={{
+                                position: 'absolute',
+                                padding: '5px',
+                                ...avatarConfig[focusedField].bubbleStyles
+                              }}
+                            >
+                              {avatarConfig[focusedField].message}
+                              {/* Little triangle tail for the speech bubble */}
+                              <div
+                                style={{
+                                  position: 'absolute',
+                                  bottom: '-8px',
+                                  right: '20px',
+                                  width: 0,
+                                  height: 0,
+                                  borderLeft: '10px solid transparent',
+                                  borderRight: '10px solid transparent',
+                                  borderTop: '10px solid white'
+                                }}
+                              />
+                            </div>
 
-                      {/* Avatar Image */}
-                      <img
-                        src={avatarConfig[focusedField].img}
-                        alt="Avatar"
-                        style={{
-                          position: 'absolute',
-                          objectFit: 'contain',
-                          ...avatarConfig[focusedField].avatarStyles
-                        }}
-                      />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                            {/* Avatar Image */}
+                            <img
+                              src={avatarConfig[focusedField].img}
+                              alt="Avatar"
+                              style={{
+                                position: 'absolute',
+                                objectFit: 'contain',
+                                ...avatarConfig[focusedField].avatarStyles
+                              }}
+                            />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
 
           </div>
