@@ -80,6 +80,12 @@ const errorConfig = {
   messageStyles: { fontSize: '1.8rem', color: '#f87171', marginTop: '20px', fontWeight: 'bold', textAlign: 'center', whiteSpace: 'nowrap' }
 };
 
+const servicesList = [
+  { id: 'web', label: 'Web Development', price: 15000 },
+  { id: 'app', label: 'App Development', price: 25000 },
+  { id: 'seo', label: 'SEO Optimization', price: 10000 }
+];
+
 const StatItem = ({ img, limit, invert, url }) => {
   const [count, setCount] = useState(0);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -217,8 +223,24 @@ function Connect() {
     setTimeSlots(newSlots);
   };
 
-  const isStep1Valid = name.trim() !== '' && email.trim() !== '' && message.trim() !== '';
-  const isStep2Valid = timeSlots.every(slot => slot.date.trim() !== '' && slot.time.trim() !== '') && service !== '' && isConfirmed;
+  const isValidTime = (timeStr) => {
+    if (!timeStr) return false;
+    const [hours, minutes] = timeStr.split(':').map(Number);
+    const timeInMins = hours * 60 + minutes;
+    const minTime = 10 * 60; // 10:00
+    const maxTime = 18 * 60; // 18:00
+    return timeInMins >= minTime && timeInMins <= maxTime;
+  };
+
+  const isValidDate = (dateStr) => {
+    if (!dateStr || !minDate) return false;
+    return dateStr >= minDate;
+  };
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const isStep1Valid = name.trim() !== '' && name.length <= 25 && email.trim() !== '' && emailRegex.test(email) && message.trim() !== '' && message.length <= 400;
+  const isStep2Filled = timeSlots.every(slot => isValidDate(slot.date) && isValidTime(slot.time)) && service !== '';
+  const isStep2Valid = isStep2Filled && isConfirmed;
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -267,7 +289,7 @@ function Connect() {
               <h2 className="text-xl font-semibold text-white tracking-wide m-0">Personal Details</h2>
             </div>
             <div className="input-group !mb-2">
-              <input type="text" name="name" id="name" className={`custom-input ${name ? 'has-value' : ''}`} placeholder=" " value={name} onChange={(e) => setName(e.target.value)} onFocus={() => setFocusedField('name')} onBlur={() => setFocusedField(null)} required />
+              <input type="text" name="name" id="name" className={`custom-input ${name ? 'has-value' : ''}`} placeholder=" " value={name} onChange={(e) => setName(e.target.value)} onFocus={() => setFocusedField('name')} onBlur={() => setFocusedField(null)} maxLength={25} required />
               <label htmlFor="name" className="custom-label">Name</label>
             </div>
 
@@ -277,7 +299,7 @@ function Connect() {
             </div>
 
             <div className="input-group !mb-2">
-              <textarea name="message" id="message" rows="4" className={`custom-input resize-none ${message ? 'has-value' : ''}`} placeholder=" " value={message} onChange={(e) => setMessage(e.target.value)} onFocus={() => setFocusedField('message')} onBlur={() => setFocusedField(null)} required></textarea>
+              <textarea name="message" id="message" rows="4" className={`custom-input resize-none ${message ? 'has-value' : ''}`} placeholder=" " value={message} onChange={(e) => setMessage(e.target.value)} onFocus={() => setFocusedField('message')} onBlur={() => setFocusedField(null)} maxLength={400} required></textarea>
               <label htmlFor="message" className="custom-label">Message</label>
             </div>
 
@@ -303,7 +325,22 @@ function Connect() {
 
             {/* Time Slots */}
             <div className="flex flex-col gap-4">
-              <label className="block text-sm text-gray-400 uppercase tracking-wider font-semibold">Your free time slot</label>
+              <div className="flex items-center gap-3">
+                <label className="block text-sm text-gray-400 uppercase tracking-wider font-semibold">Your free time slot</label>
+                <div className="relative group flex items-center justify-center">
+                  <motion.div
+                    animate={{ rotate: [0, -15, 15, -15, 15, 0] }}
+                    transition={{ repeat: Infinity, repeatDelay: 5, duration: 0.5 }}
+                    className="w-5 h-5 rounded-full border-2 border-blue-400/50 text-blue-400 flex items-center justify-center text-xs font-bold cursor-help bg-blue-400/10 hover:bg-blue-400/20"
+                  >
+                    i
+                  </motion.div>
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-xs text-gray-200 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 text-center shadow-xl border border-gray-700">
+                    Date allowed is after 7 days from today and time should be 10AM to 6PM.
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
+                  </div>
+                </div>
+              </div>
               <div className="flex flex-col gap-3">
                 {timeSlots.map((slot, index) => (
                   <div key={index} className="flex gap-2 items-center group">
@@ -322,6 +359,8 @@ function Connect() {
                         type="time"
                         className="custom-datetime-input"
                         value={slot.time}
+                        min="10:00"
+                        max="18:00"
                         onChange={(e) => handleSlotChange(index, 'time', e.target.value)}
                         onFocus={() => setFocusedField('datetime')}
                         onBlur={() => setFocusedField(null)}
@@ -371,9 +410,11 @@ function Connect() {
                   required
                 >
                   <option value="" disabled hidden>Select a service...</option>
-                  <option value="web">Web Development</option>
-                  <option value="app">App Development</option>
-                  <option value="seo">SEO Optimization</option>
+                  {servicesList.map(s => (
+                    <option key={s.id} value={`${s.label} (₹${s.price})`}>
+                      {s.label} - ₹{s.price}
+                    </option>
+                  ))}
                 </select>
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
                   ▼
@@ -383,17 +424,18 @@ function Connect() {
 
             {/* Confirmation Checkbox */}
             <div
-              className="flex items-center gap-4 mt-2 p-4 transition-colors cursor-pointer"
-              onClick={() => handleConfirmToggle(!isConfirmed)}
-              onMouseEnter={() => { if (isConfirmed) setFocusedField('confirm') }}
+              className={`flex items-center gap-4 mt-2 p-4 transition-colors ${!isStep2Filled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+              onClick={() => { if (isStep2Filled) handleConfirmToggle(!isConfirmed) }}
+              onMouseEnter={() => { if (isConfirmed && isStep2Filled) setFocusedField('confirm') }}
               onMouseLeave={() => setFocusedField(null)}
             >
               <div className="relative flex items-center justify-center flex-shrink-0">
                 <input
                   type="checkbox"
                   id="confirm"
-                  className="peer w-5 h-5 appearance-none border-2 border-gray-500 rounded-md checked:border-blue-500 checked:bg-blue-500 transition-all cursor-pointer"
+                  className={`peer w-5 h-5 appearance-none border-2 border-gray-500 rounded-md checked:border-blue-500 checked:bg-blue-500 transition-all ${!isStep2Filled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
                   checked={isConfirmed}
+                  disabled={!isStep2Filled}
                   onChange={(e) => handleConfirmToggle(e.target.checked)}
                   onClick={(e) => e.stopPropagation()}
                 />
