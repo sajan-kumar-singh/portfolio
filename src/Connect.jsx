@@ -207,9 +207,10 @@ function Connect() {
 
   const renderForm = (isDesktop = false) => (
     <form
+      action="https://api.web3forms.com/submit"
+      method="POST"
       className="w-full min-w-[18rem] max-w-md flex flex-col gap-4 mt-10"
       style={isDesktop ? { margin: '20px 0px 20px 80px' } : {}}
-      onSubmit={(e) => e.preventDefault()}
     >
 
       {step === 1 && (
@@ -364,6 +365,12 @@ function Connect() {
         </div>
       )}
 
+      {/* Hidden inputs for Web3Forms access key and data preservation across steps */}
+      <input type="hidden" name="access_key" value={import.meta.env.VITE_WEB3FORMS_KEY} />
+      <input type="hidden" name="name" value={name} />
+      <input type="hidden" name="email" value={email} />
+      <input type="hidden" name="message" value={message} />
+      <input type="hidden" name="timeSlots" value={timeSlots.map((s, i) => `Slot ${i + 1}: ${s.date} at ${s.time}`).join(' | ')} />
     </form>
   );
 
