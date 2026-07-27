@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import portfolioData from './portfolioData.json';
 import './index.css';
+import Recommendations from './Recommendations';
 
 // Pre-calculate the scroll positions for each experience
 let currentScroll = 1350;
@@ -32,7 +33,7 @@ const lineExitEnd = lineExitStart + 600; // Increased distance to make the line 
 const ballExitStart = lineExitEnd;
 const ballExitEnd = ballExitStart + 600; // Increased distance to make the ball move slower
 
-const totalScrollHeight = ballExitEnd + 500; // Add padding at the very end
+const totalScrollHeight = ballExitEnd + 1500; // Add padding at the very end to allow scrolling through Recommendations
 
 const ExperienceBlock = ({ scrollY, exp }) => {
   // Fade in left items, then fade them out at the end
@@ -177,53 +178,58 @@ function Portfolio() {
   return (
     <div className="page-container" style={{ height: isDesktop ? `${totalScrollHeight}px` : '100vh', display: 'block', position: 'relative' }}>
       {isDesktop ? (
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', pointerEvents: 'none' }}>
+        <>
+          <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', pointerEvents: 'none' }}>
 
-          <motion.div
-            style={{
-              position: 'absolute',
-              bottom: purpleBottom, // Controlled by scroll to slide up
-              left: 0,
-              width: '100vw',
-              backgroundColor: '#6b21a8',
-              height: purpleHeight,
-              zIndex: 1
-            }}
-          />
+            <motion.div
+              style={{
+                position: 'absolute',
+                bottom: purpleBottom, // Controlled by scroll to slide up
+                left: 0,
+                width: '100vw',
+                backgroundColor: '#6b21a8',
+                height: purpleHeight,
+                zIndex: 1
+              }}
+            />
 
-          <motion.div
-            style={{
-              position: 'absolute',
-              bottom: 'calc(50% + 50px)', // Always anchored to the ball
-              y: lineY, // Moves up during exit to keep the top edge fixed while height shrinks
-              width: '4px',
-              backgroundColor: '#FFF',
-              height: lineHeight, // Shrinks at the end
-              opacity: lineOpacity, // Hides the box-shadow when height is 0
-              boxShadow: '0 0 15px 5px rgba(255, 255, 255, 0.8)',
-              zIndex: 5
-            }}
-          />
+            <motion.div
+              style={{
+                position: 'absolute',
+                bottom: 'calc(50% + 50px)', // Always anchored to the ball
+                y: lineY, // Moves up during exit to keep the top edge fixed while height shrinks
+                width: '4px',
+                backgroundColor: '#FFF',
+                height: lineHeight, // Shrinks at the end
+                opacity: lineOpacity, // Hides the box-shadow when height is 0
+                boxShadow: '0 0 15px 5px rgba(255, 255, 255, 0.8)',
+                zIndex: 5
+              }}
+            />
 
-          <ExperienceTag scrollY={scrollY} />
+            <ExperienceTag scrollY={scrollY} />
 
-          {experienceBlocks.map((exp, index) => (
-            <ExperienceBlock key={index} scrollY={scrollY} exp={exp} />
-          ))}
+            {experienceBlocks.map((exp, index) => (
+              <ExperienceBlock key={index} scrollY={scrollY} exp={exp} />
+            ))}
 
-          <motion.div
-            style={{
-              width: '100px',
-              height: '100px',
-              backgroundColor: '#FFF',
-              borderRadius: '50%',
-              boxShadow: '0 0 40px 15px rgba(255, 255, 255, 0.6), 0 0 80px 30px rgba(255, 255, 255, 0.4)',
-              zIndex: 10,
-              y: ballY
-            }}
-          ></motion.div>
+            <motion.div
+              style={{
+                width: '100px',
+                height: '100px',
+                backgroundColor: '#FFF',
+                borderRadius: '50%',
+                boxShadow: '0 0 40px 15px rgba(255, 255, 255, 0.6), 0 0 80px 30px rgba(255, 255, 255, 0.4)',
+                zIndex: 10,
+                y: ballY
+              }}
+            ></motion.div>
 
-        </div>
+          </div>
+          <div style={{ position: 'absolute', top: `${ballExitEnd}px`, width: '100%', zIndex: 20 }}>
+            <Recommendations />
+          </div>
+        </>
       ) : (
         <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <h1 style={{ fontSize: '3rem', fontWeight: 'bold', color: '#FFF' }}>Coming Soon</h1>
