@@ -4,6 +4,7 @@ import portfolioData from './portfolioData.json';
 import './index.css';
 import Recommendations from './Recommendations';
 import TechStack from './TechStacks';
+import ProjectGallery from './ProjectGallery';
 import reactImg from './assets/react.webp';
 import typescriptImg from './assets/typescript.webp';
 import node2Img from './assets/node2.webp';
@@ -67,7 +68,7 @@ const lineExitEnd = lineExitStart + 600; // Increased distance to make the line 
 const ballExitStart = lineExitEnd;
 const ballExitEnd = ballExitStart + 600; // Increased distance to make the ball move slower
 
-const totalScrollHeight = ballExitEnd + 2500; // Add padding for Recommendations and TechStack
+const totalScrollHeight = ballExitEnd + 3500; // Add padding for Recommendations, TechStack, and Project Gallery
 
 const ExperienceBlock = ({ scrollY, exp }) => {
   // Fade in left items, then fade them out at the end
@@ -311,6 +312,14 @@ function Portfolio() {
               ]}
               count={33}
             />
+          </div>
+          <div style={{
+            position: 'absolute',
+            top: `calc(${ballExitEnd}px + 205vh)`,
+            width: '100%',
+            zIndex: 20
+          }}>
+            <ProjectGallery />
           </div>
         </>
       ) : (
