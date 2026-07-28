@@ -3,6 +3,40 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import portfolioData from './portfolioData.json';
 import './index.css';
 import Recommendations from './Recommendations';
+import TechStack from './TechStacks';
+import reactImg from './assets/react.webp';
+import typescriptImg from './assets/typescript.webp';
+import node2Img from './assets/node2.webp';
+import mysqlImg from './assets/mysql.webp';
+import mongoImg from './assets/mongo.webp';
+import javascriptImg from './assets/javascript.webp';
+import java from './assets/java.webp';
+import html5Img from './assets/html5.webp';
+import css3Img from './assets/css3.webp';
+import angularImg from './assets/angular.webp';
+import springBoot from './assets/spring boot.webp';
+import bootstrapImg from './assets/bootstrap.webp';
+import redisImg from './assets/redis.webp';
+import awss3 from './assets/awss3.webp';
+import gcp from './assets/GCP.webp';
+import elasticsearch from './assets/elasticsearch.webp';
+import awsec2 from './assets/awsec2.webp';
+import github from './assets/github.webp';
+import postman from './assets/postman.webp';
+import docker from './assets/docker.webp';
+import git from './assets/git.webp';
+import jenkins from './assets/jenkins.webp';
+import maven from './assets/maven.webp';
+import cursorai from './assets/cursorai.webp';
+import intellij from './assets/intellij.webp';
+import eclipse from './assets/eclipse.webp';
+import springsecurity from './assets/springsecurity.webp';
+import springmvc from './assets/springmvc.webp';
+import oauth2 from './assets/oauth2.webp';
+import jwt from './assets/jwt.webp';
+import aws from './assets/aws.webp';
+import leetcode from './assets/leetcode.webp';
+import kafka from './assets/kafka.webp';
 
 // Pre-calculate the scroll positions for each experience
 let currentScroll = 1350;
@@ -33,7 +67,7 @@ const lineExitEnd = lineExitStart + 600; // Increased distance to make the line 
 const ballExitStart = lineExitEnd;
 const ballExitEnd = ballExitStart + 600; // Increased distance to make the ball move slower
 
-const totalScrollHeight = ballExitEnd + 1500; // Add padding at the very end to allow scrolling through Recommendations
+const totalScrollHeight = ballExitEnd + 2500; // Add padding for Recommendations and TechStack
 
 const ExperienceBlock = ({ scrollY, exp }) => {
   // Fade in left items, then fade them out at the end
@@ -228,6 +262,55 @@ function Portfolio() {
           </div>
           <div style={{ position: 'absolute', top: `${ballExitEnd}px`, width: '100%', zIndex: 20 }}>
             <Recommendations />
+          </div>
+          <div style={{
+            position: 'absolute',
+            top: `calc(${ballExitEnd}px + 105vh)`,
+            width: '100%',
+            height: '90vh',
+            border: '2px solid rgba(0, 0, 0, 0.4)',
+            borderRadius: '20px',
+            boxSizing: 'border-box',
+            zIndex: 20
+          }}>
+            <TechStack
+              imageUrls={[
+                reactImg,
+                typescriptImg,
+                node2Img,
+                mysqlImg,
+                mongoImg,
+                javascriptImg,
+                java,
+                html5Img,
+                css3Img,
+                angularImg,
+                springBoot,
+                bootstrapImg,
+                redisImg,
+                awss3,
+                awsec2,
+                gcp,
+                elasticsearch,
+                kafka,
+                github,
+                postman,
+                docker,
+                git,
+                jenkins,
+                maven,
+                cursorai,
+                intellij,
+                eclipse,
+                springsecurity,
+                springmvc,
+                oauth2,
+                jwt,
+                aws,
+                leetcode
+              ]}
+              count={33}
+            />
           </div>
         </>
       ) : (
