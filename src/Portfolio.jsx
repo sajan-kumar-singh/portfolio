@@ -64,11 +64,11 @@ const experienceBlocks = portfolioData.experiences.map((exp) => {
 const purpleExitStart = currentScroll;
 const purpleExitEnd = purpleExitStart + 450;
 const lineExitStart = purpleExitEnd;
-const lineExitEnd = lineExitStart + 600; // Increased distance to make the line move slower
+const lineExitEnd = lineExitStart + 100; // Increased distance to make the line move slower
 const ballExitStart = lineExitEnd;
 const ballExitEnd = ballExitStart + 600; // Increased distance to make the ball move slower
 
-const totalScrollHeight = ballExitEnd + 3500; // Add padding for Recommendations, TechStack, and Project Gallery
+const totalScrollHeight = ballExitEnd + 2500; // Expanded to accommodate the new gaps between sections
 
 const ExperienceBlock = ({ scrollY, exp }) => {
   // Fade in left items, then fade them out at the end
@@ -261,12 +261,12 @@ function Portfolio() {
             ></motion.div>
 
           </div>
-          <div style={{ position: 'absolute', top: `${ballExitEnd}px`, width: '100%', zIndex: 20 }}>
+          <div style={{ position: 'absolute', top: `calc(${ballExitEnd}px + 50vh)`, width: '100%', zIndex: 20 }}>
             <Recommendations />
           </div>
           <div style={{
             position: 'absolute',
-            top: `calc(${ballExitEnd}px + 105vh)`,
+            top: `calc(${ballExitEnd}px + 200vh)`,
             width: '100%',
             height: '90vh',
             border: '2px solid rgba(0, 0, 0, 0.4)',
@@ -315,7 +315,7 @@ function Portfolio() {
           </div>
           <div style={{
             position: 'absolute',
-            top: `calc(${ballExitEnd}px + 205vh)`,
+            top: `calc(${ballExitEnd}px + 340vh)`,
             width: '100%',
             zIndex: 20
           }}>
