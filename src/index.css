@@ -599,3 +599,14 @@ body.reduce-motion * {
 .custom-pt-4 { padding-top: 16px; }
 .custom-pt-4-pb-2 { padding-top: 16px; padding-bottom: 8px; }
 .custom-px-6-py-4 { padding: 16px 24px; }
+.custom-mb-4 { margin-bottom: 16px; }
+.custom-mt-1 { margin-top: 4px; }
+.custom-mt-0-5 { margin-top: 2px; }
+.custom-p-6 { padding: 24px; }
+.custom-mb-2 { margin-bottom: 8px; }
+.custom-mt-2 { margin-top: 8px; }
+.custom-pr-2 { padding-right: 8px; }
+.custom-ml-4 { margin-left: 16px; }
+.custom-ml-6 { margin-left: 24px; }
+.custom-mt-4 { margin-top: 16px; }
+.custom-space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 16px; }

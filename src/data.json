@@ -1,0 +1,467 @@
+[
+  {
+    "id": 1,
+    "image": "/images/full stack architect.png",
+    "role": "Full Stack Architect",
+    "roleDetails": "Engineering Scalable & Beautiful Digital Systems. I turn ideas into reliable, high-performance web products.",
+    "experience": [
+      {
+        "company": "TechNova Solutions",
+        "location": "San Francisco, CA (Remote)",
+        "duration": "May 2022 - Present",
+        "note": "A fast-paced tech company specializing in scalable cloud solutions and enterprise web applications.",
+        "roles": [
+          {
+            "position": "Senior Full Stack Engineer",
+            "points": [
+              "Architected and deployed highly scalable microservices using Node.js and Spring Boot, reducing API latency by 35%.",
+              "Led the frontend team in migrating legacy applications to React and TypeScript, improving development velocity."
+            ]
+          },
+          {
+            "position": "Full Stack Engineer",
+            "points": [
+              "Integrated AWS S3 and Google Cloud Drive APIs for seamless cloud asset management.",
+              "Established CI/CD pipelines via GitHub Actions and Docker, ensuring smooth and rapid deployments."
+            ]
+          }
+        ]
+      },
+      {
+        "company": "Creative Web Agency",
+        "location": "New York, NY",
+        "duration": "Jan 2021 - May 2022",
+        "note": "An award-winning digital agency delivering bespoke web experiences and e-commerce platforms.",
+        "roles": [
+          {
+            "position": "Frontend Developer",
+            "points": [
+              "Developed interactive and dynamic UI components using React, HTML5, and CSS3.",
+              "Optimized web applications for maximum speed, achieving a 95+ score on Google Lighthouse.",
+              "Collaborated closely with UX/UI designers to translate Figma mockups into pixel-perfect code.",
+              "Maintained and queried MySQL databases for efficient data retrieval."
+            ]
+          }
+        ]
+      }
+    ],
+    "skills": [
+      {
+        "name": "Angular",
+        "start": "January 2023",
+        "rating": 8,
+        "icon": "AngularIcon",
+        "description": "Built scalable enterprise applications and dynamic UIs.",
+        "link": ""
+      },
+      {
+        "name": "React",
+        "start": "January 2023",
+        "rating": 9,
+        "icon": "ReactIcon",
+        "description": "Developed interactive Single Page Applications (SPAs).",
+        "link": "#"
+      },
+      {
+        "name": "Node.js",
+        "start": "January 2023",
+        "rating": 8,
+        "icon": "NodejsIcon",
+        "bgWhite": true,
+        "description": "Created RESTful backend services and scalable APIs.",
+        "link": ""
+      },
+      {
+        "name": "Java",
+        "start": "January 2021",
+        "rating": 7,
+        "icon": "JavaIcon",
+        "bgWhite": true,
+        "description": "Backend development with the Spring ecosystem.",
+        "link": ""
+      },
+      {
+        "name": "JavaScript (ES6+)",
+        "start": "January 2023",
+        "rating": 9,
+        "icon": "JavascriptIcon",
+        "description": "Core language for frontend logic and complex scripting.",
+        "link": ""
+      },
+      {
+        "name": "TypeScript",
+        "start": "January 2023",
+        "rating": 8,
+        "icon": "TypescriptIcon",
+        "description": "Used for type-safe React and Angular projects.",
+        "link": ""
+      },
+      {
+        "name": "SQL",
+        "start": "January 2021",
+        "rating": 7,
+        "icon": "MysqlIcon",
+        "bgWhite": true,
+        "description": "Database design, complex queries, and optimization.",
+        "link": ""
+      },
+      {
+        "name": "HTML5",
+        "start": "January 2020",
+        "rating": 9,
+        "icon": "Html5Icon",
+        "description": "Semantic markup and accessibility best practices.",
+        "link": ""
+      },
+      {
+        "name": "CSS3",
+        "start": "January 2020",
+        "rating": 9,
+        "icon": "Css3Icon",
+        "description": "Responsive design, Flexbox, and CSS Grid layouts.",
+        "link": ""
+      },
+      {
+        "name": "Spring Boot",
+        "start": "January 2023",
+        "rating": 7,
+        "icon": "SpringIcon",
+        "bgWhite": true,
+        "description": "Microservices architecture and robust API development.",
+        "link": ""
+      },
+      {
+        "name": "Bootstrap",
+        "start": "January 2022",
+        "rating": 8,
+        "icon": "BootstrapIcon",
+        "description": "Rapid UI prototyping and responsive grid layouts.",
+        "link": ""
+      },
+      {
+        "name": "RESTful APIs",
+        "start": "January 2023",
+        "rating": 9,
+        "icon": null,
+        "description": "Designing highly scalable and secure web services.",
+        "link": ""
+      },
+      {
+        "name": "MongoDB",
+        "start": "January 2023",
+        "rating": 8,
+        "icon": "MongoIcon",
+        "description": "NoSQL database management and complex aggregations.",
+        "link": ""
+      },
+      {
+        "name": "Google Cloud (Drive API, OAuth 2.0)",
+        "start": "January 2023",
+        "rating": 7,
+        "icon": "GcpIcon",
+        "description": "Cloud integrations and secure authentication flows.",
+        "link": ""
+      },
+      {
+        "name": "AWS S3",
+        "start": "January 2023",
+        "rating": 7,
+        "icon": "AwsS3Icon",
+        "description": "Object storage and scalable cloud asset management.",
+        "link": ""
+      },
+      {
+        "name": "Git",
+        "start": "January 2023",
+        "rating": 8,
+        "icon": "GitIcon",
+        "description": "Version control and collaborative team workflows.",
+        "link": ""
+      },
+      {
+        "name": "GitHub",
+        "start": "January 2023",
+        "rating": 8,
+        "icon": "GithubIcon",
+        "description": "CI/CD pipelines and repository management.",
+        "link": ""
+      },
+      {
+        "name": "Docker",
+        "start": "January 2023",
+        "rating": 6,
+        "icon": "DockerIcon",
+        "description": "Containerized applications for consistent environments.",
+        "link": ""
+      },
+      {
+        "name": "Postman",
+        "start": "January 2023",
+        "rating": 9,
+        "icon": "PostmanIcon",
+        "description": "API testing, comprehensive documentation, and mocking.",
+        "link": ""
+      },
+      {
+        "name": "Cursor AI",
+        "start": "January 2025",
+        "rating": 8,
+        "icon": null,
+        "description": "AI-assisted coding and productivity workflows.",
+        "link": ""
+      },
+      {
+        "name": "Data Structures & Algorithms",
+        "start": "January 2019",
+        "rating": 8,
+        "icon": null,
+        "description": "Problem-solving and optimized code execution.",
+        "link": ""
+      }
+    ],
+    "recommendations": [
+      {
+        "name": "Alice Johnson",
+        "role": "Product Manager",
+        "text": "Sajan is a fantastic developer. His ability to translate complex requirements into seamless UI is truly impressive. He always delivers on time.",
+        "url": "#"
+      },
+      {
+        "name": "Mark Smith",
+        "role": "CTO at TechCorp",
+        "text": "Working with Sajan was a great experience. He brought innovative solutions to the table and drastically improved our frontend performance.",
+        "url": "#"
+      },
+      {
+        "name": "Sarah Lee",
+        "role": "UX Designer",
+        "text": "I love how Sajan pays attention to the finest design details. Our collaborations always resulted in pixel-perfect implementations.",
+        "url": "#"
+      },
+      {
+        "name": "David Kim",
+        "role": "Senior Engineer",
+        "text": "A highly skilled professional who understands both the big picture and the underlying code architecture. Highly recommended!",
+        "url": "#"
+      },
+      {
+        "name": "Emily Davis",
+        "role": "Frontend Lead",
+        "text": "Sajan's expertise in React and modern JavaScript frameworks is top-notch. He is a great team player and a mentor to juniors.",
+        "url": "#"
+      },
+      {
+        "name": "Michael Brown",
+        "role": "Client",
+        "text": "He built our web application from scratch, and the results exceeded our expectations. The animations were incredibly smooth.",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "image": "/images/Entrepreneur.png",
+    "role": "Entrepreneur",
+    "roleDetails": "Building innovative startups and scalable products from the ground up.",
+    "experience": [
+      {
+        "company": "Own Startup",
+        "location": "Global",
+        "duration": "Jan 2020 - Present",
+        "note": "A technology startup focusing on solving real-world problems with AI and cloud solutions.",
+        "roles": [
+          {
+            "position": "Founder & Technical Lead",
+            "points": [
+              "Bootstrapped the initial MVP and scaled the user base to over 10,000 active users within the first year.",
+              "Managed a small team of developers, designers, and marketers to ensure product-market fit.",
+              "Secured early-stage seed funding by pitching to venture capitalists and angel investors."
+            ]
+          }
+        ]
+      }
+    ],
+    "skills": [
+      {
+        "name": "Angular",
+        "start": "January 2023",
+        "rating": 8,
+        "icon": "AngularIcon",
+        "description": "Built scalable enterprise applications and dynamic UIs.",
+        "link": ""
+      },
+      {
+        "name": "React",
+        "start": "January 2023",
+        "rating": 9,
+        "icon": "ReactIcon",
+        "description": "Developed interactive Single Page Applications (SPAs).",
+        "link": "#"
+      },
+      {
+        "name": "Node.js",
+        "start": "January 2023",
+        "rating": 8,
+        "icon": "NodejsIcon",
+        "bgWhite": true,
+        "description": "Created RESTful backend services and scalable APIs.",
+        "link": ""
+      },
+      {
+        "name": "Java",
+        "start": "January 2021",
+        "rating": 7,
+        "icon": "JavaIcon",
+        "bgWhite": true,
+        "description": "Backend development with the Spring ecosystem.",
+        "link": ""
+      },
+      {
+        "name": "JavaScript (ES6+)",
+        "start": "January 2023",
+        "rating": 9,
+        "icon": "JavascriptIcon",
+        "description": "Core language for frontend logic and complex scripting.",
+        "link": ""
+      },
+      {
+        "name": "TypeScript",
+        "start": "January 2023",
+        "rating": 8,
+        "icon": "TypescriptIcon",
+        "description": "Used for type-safe React and Angular projects.",
+        "link": ""
+      },
+      {
+        "name": "SQL",
+        "start": "January 2021",
+        "rating": 7,
+        "icon": "MysqlIcon",
+        "bgWhite": true,
+        "description": "Database design, complex queries, and optimization.",
+        "link": ""
+      },
+      {
+        "name": "HTML5",
+        "start": "January 2020",
+        "rating": 9,
+        "icon": "Html5Icon",
+        "description": "Semantic markup and accessibility best practices.",
+        "link": ""
+      },
+      {
+        "name": "CSS3",
+        "start": "January 2020",
+        "rating": 9,
+        "icon": "Css3Icon",
+        "description": "Responsive design, Flexbox, and CSS Grid layouts.",
+        "link": ""
+      },
+      {
+        "name": "Spring Boot",
+        "start": "January 2023",
+        "rating": 7,
+        "icon": "SpringIcon",
+        "bgWhite": true,
+        "description": "Microservices architecture and robust API development.",
+        "link": ""
+      },
+      {
+        "name": "Bootstrap",
+        "start": "January 2022",
+        "rating": 8,
+        "icon": "BootstrapIcon",
+        "description": "Rapid UI prototyping and responsive grid layouts.",
+        "link": ""
+      },
+      {
+        "name": "RESTful APIs",
+        "start": "January 2023",
+        "rating": 9,
+        "icon": null,
+        "description": "Designing highly scalable and secure web services.",
+        "link": ""
+      },
+      {
+        "name": "MongoDB",
+        "start": "January 2023",
+        "rating": 8,
+        "icon": "MongoIcon",
+        "description": "NoSQL database management and complex aggregations.",
+        "link": ""
+      },
+      {
+        "name": "Google Cloud (Drive API, OAuth 2.0)",
+        "start": "January 2023",
+        "rating": 7,
+        "icon": "GcpIcon",
+        "description": "Cloud integrations and secure authentication flows.",
+        "link": ""
+      },
+      {
+        "name": "AWS S3",
+        "start": "January 2023",
+        "rating": 7,
+        "icon": "AwsS3Icon",
+        "description": "Object storage and scalable cloud asset management.",
+        "link": ""
+      },
+      {
+        "name": "Git",
+        "start": "January 2023",
+        "rating": 8,
+        "icon": "GitIcon",
+        "description": "Version control and collaborative team workflows.",
+        "link": ""
+      },
+      {
+        "name": "GitHub",
+        "start": "January 2023",
+        "rating": 8,
+        "icon": "GithubIcon",
+        "description": "CI/CD pipelines and repository management.",
+        "link": ""
+      },
+      {
+        "name": "Docker",
+        "start": "January 2023",
+        "rating": 6,
+        "icon": "DockerIcon",
+        "description": "Containerized applications for consistent environments.",
+        "link": ""
+      },
+      {
+        "name": "Postman",
+        "start": "January 2023",
+        "rating": 9,
+        "icon": "PostmanIcon",
+        "description": "API testing, comprehensive documentation, and mocking.",
+        "link": ""
+      },
+      {
+        "name": "Cursor AI",
+        "start": "January 2025",
+        "rating": 8,
+        "icon": null,
+        "description": "AI-assisted coding and productivity workflows.",
+        "link": ""
+      },
+      {
+        "name": "Data Structures & Algorithms",
+        "start": "January 2019",
+        "rating": 8,
+        "icon": null,
+        "description": "Problem-solving and optimized code execution.",
+        "link": ""
+      }
+    ],
+    "recommendations": [
+      {
+        "name": "Startup Advisor",
+        "role": "Venture Partner",
+        "text": "A visionary founder who knows how to execute. Sajan's ability to combine technical depth with business acumen is exceptional.",
+        "url": "#"
+      }
+    ]
+  }
+]
