@@ -1,23 +1,6 @@
 import React, { useState } from 'react';
 
-// Enhanced mock data with objects
-const dataSection1 = [
-  { name: "Alice Johnson", role: "Product Manager", text: "Sajan is a fantastic developer. His ability to translate complex requirements into seamless UI is truly impressive. He always delivers on time.", url: "#" },
-  { name: "Mark Smith", role: "CTO at TechCorp", text: "Working with Sajan was a great experience. He brought innovative solutions to the table and drastically improved our frontend performance.", url: "#" },
-  { name: "Sarah Lee", role: "UX Designer", text: "I love how Sajan pays attention to the finest design details. Our collaborations always resulted in pixel-perfect implementations.", url: "#" }
-];
-
-const dataSection2 = [
-  { name: "David Kim", role: "Senior Engineer", text: "A highly skilled professional who understands both the big picture and the underlying code architecture. Highly recommended!", url: "#" },
-  { name: "Emily Davis", role: "Frontend Lead", text: "Sajan's expertise in React and modern JavaScript frameworks is top-notch. He is a great team player and a mentor to juniors.", url: "#" },
-  { name: "Michael Brown", role: "Client", text: "He built our web application from scratch, and the results exceeded our expectations. The animations were incredibly smooth.", url: "#" }
-];
-
-const dataSection3 = [
-  { name: "Jessica Taylor", role: "Project Manager", text: "Reliable, communicative, and extremely talented. Sajan made sure every milestone was hit without compromising quality.", url: "#" },
-  { name: "Chris Wilson", role: "Fullstack Developer", text: "It's rare to find someone so proficient in creating dynamic, interactive user experiences. Sajan's work speaks for itself.", url: "#" },
-  { name: "Anna Martinez", role: "Startup Founder", text: "Sajan took our initial idea and turned it into a beautiful, functional product. I wouldn't hesitate to work with him again.", url: "#" }
-];
+// Data will be passed as a prop
 
 const Card = ({ item }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -104,7 +87,24 @@ const Column = ({ data, direction }) => {
   );
 };
 
-const Recommendations = () => {
+const Recommendations = ({ recommendationsData = [] }) => {
+  if (!recommendationsData || recommendationsData.length < 6) return null;
+
+  const remainder = recommendationsData.length % 3;
+  let finalData = [...recommendationsData];
+
+  if (remainder !== 0) {
+    const itemsToAdd = 3 - remainder;
+    for (let i = 0; i < itemsToAdd; i++) {
+      finalData.push(finalData[i]);
+    }
+  }
+
+  const chunkSize = finalData.length / 3;
+  const dataSection1 = finalData.slice(0, chunkSize);
+  const dataSection2 = finalData.slice(chunkSize, chunkSize * 2);
+  const dataSection3 = finalData.slice(chunkSize * 2);
+
   return (
     <>
       {/* Define standard CSS animations for the infinite scroll */}

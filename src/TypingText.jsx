@@ -21,12 +21,15 @@ const cuboidPhrases = [
 ];
 
 const TypingText = () => {
-  const [text, setText] = useState('');
+  const isSinglePhrase = phrases.length === 1;
+  const [text, setText] = useState(isSinglePhrase ? phrases[0] : '');
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (isSinglePhrase) return; // Skip all typing logic
+
     let timer;
     const i = loopNum % phrases.length;
     const fullText = phrases[i];
@@ -53,7 +56,7 @@ const TypingText = () => {
     }
 
     return () => clearTimeout(timer);
-  }, [text, isDeleting, loopNum]);
+  }, [text, isDeleting, loopNum, isSinglePhrase]);
 
   return (
     <div className="absolute top-fluid-top left-[5%] lg:left-[12%] -translate-y-1/2 z-[100] text-left w-[90%] lg:w-auto">
@@ -67,7 +70,9 @@ const TypingText = () => {
         <span className="text-fluid-body font-bold text-white mt-2">I'm</span>
         <h2 className="text-fluid-h1 font-bold text-[#FA8A00] m-0 leading-none">
           <span className="typed-text">{text}</span>
-          <span className="font-thin text-fluid-h1 text-white animate-[blink_1s_step-end_infinite]">|</span>
+          {!isSinglePhrase && (
+            <span className="font-thin text-fluid-h1 text-white animate-[blink_1s_step-end_infinite]">|</span>
+          )}
         </h2>
       </div>
       <div className="cuboid-wrapper">

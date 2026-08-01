@@ -3,6 +3,7 @@ import './index.css';
 
 import SkillsOverview from './SkillsOverview';
 import Experience from './Experience';
+import Recommendations from './Recommendations';
 
 import aboutData from './data.json';
 
@@ -25,6 +26,9 @@ const ContentCard = ({ data, slideDirection, handlePrev, handleNext, hasMultiple
 
       {/* Detail Component */}
       <SkillsOverview skillsData={data.skills} />
+
+      {/* Recommendations Component */}
+      <Recommendations recommendationsData={data.recommendations} />
     </div>
   );
 };
