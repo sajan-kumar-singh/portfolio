@@ -8,9 +8,9 @@ import InstagramIcon from './icons/InstagramIcon';
 import DockerIcon from './icons/DockerIcon';
 import ReactIcon from './icons/ReactIcon';
 import AwsIcon from './icons/AwsIcon';
+import CursorAI from './icons/CursorAI';
+import LeetCodeIcon from './icons/LeetCodeIcon';
 import microservices from './assets/R.png';
-import cursor from './assets/Cursor-Ai-Logo-PNG-SVG-Vector.png';
-import leetcode from './assets/leetcode-logo_brandlogos.net_c4kgx.png';
 import ai from './assets/robot-ai.png';
 import About from './About';
 import Portfolio from './Portfolio';
@@ -44,8 +44,12 @@ function Home() {
         <div className="orbit-icon icon-inner flex items-center justify-center" style={{ animationDelay: '0s' }}>
           <AwsIcon size={35} />
         </div>
-        <img src={cursor} alt="inner-orbit-2" className="orbit-icon icon-inner" style={{ animationDelay: '-2s' }} />
-        <img src={leetcode} alt="inner-orbit-3" className="orbit-icon icon-inner" style={{ animationDelay: '-4s' }} />
+        <div className="orbit-icon icon-inner flex items-center justify-center" style={{ animationDelay: '-2s', filter: 'invert(1)' }}>
+          <CursorAI size={35} />
+        </div>
+        <div className="orbit-icon icon-inner flex items-center justify-center" style={{ animationDelay: '-4s' }}>
+          <LeetCodeIcon size={35} />
+        </div>
         <img src={ai} alt="inner-orbit-4" className="orbit-icon icon-inner" style={{ animationDelay: '-6s' }} />
 
         {/* Foreground Image */}

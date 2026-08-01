@@ -3,7 +3,7 @@
     "id": 1,
     "image": "/images/full stack architect.png",
     "role": "Full Stack Architect",
-    "roleDetails": "Engineering Scalable & Beautiful Digital Systems. I turn ideas into reliable, high-performance web products.",
+    "roleDetails": "I am Sajan, a Full Stack Architect who designs the whole stack, not just the surface. I turn complex ideas into reliable, high-performance digital products.\\n\\nWith deep engineering experience, I specialize in architecting scalable microservices, deploying robust cloud infrastructures, and crafting pixel-perfect, highly responsive frontend interfaces. My expertise is anchored by advanced knowledge of React, Node.js, Java Spring Boot, AWS, and modern web technologies.\\n\\nI build systems that don't just work—they scale effortlessly. From designing complex CI/CD pipelines to optimizing database performance and ensuring seamless UI/UX, my approach is entirely holistic. I believe in writing code that is as elegant under the hood as it is on the screen.\\n\\nHaving engineered solutions for fast-paced tech startups and enterprise environments, I thrive on solving the hardest technical problems. I don't just write code; I engineer scalable digital systems that drive actual business growth.",
     "experience": [
       {
         "company": "TechNova Solutions",
@@ -262,7 +262,7 @@
     "id": 2,
     "image": "/images/Entrepreneur.png",
     "role": "Entrepreneur",
-    "roleDetails": "Building innovative startups and scalable products from the ground up.",
+    "roleDetails": "I am Sajan, an Entrepreneur who bets on ideas before the world believes in them. I build innovative startups and scalable products from the absolute ground up.\\n\\nAs a founder and technical lead, I bridge the critical gap between pure engineering and strategic business execution. I have successfully bootstrapped MVPs from zero, scaled early-stage user bases rapidly, and navigated the complex landscape of product-market fit and venture growth.\\n\\nI don't just view products through the lens of a developer; I analyze market demands, user retention, and sustainable scaling. My workflow seamlessly combines agile, high-velocity engineering with aggressive go-to-market strategies, ensuring that every feature directly serves the core vision.\\n\\nMy journey is driven by a relentless desire to solve real-world problems and create value. For me, entrepreneurship is about taking extreme ownership, absorbing the pressure, and transforming raw, ambitious ideas into tangible, market-leading realities.",
     "experience": [
       {
         "company": "Own Startup",

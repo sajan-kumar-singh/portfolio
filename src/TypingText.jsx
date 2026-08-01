@@ -4,20 +4,20 @@ import './index.css';
 
 const phrases = [
   "Full Stack Architect",
-  "Entrepreneur",
-  "Influencer",
-  "Trader",
-  "Gamer",
-  "Fighter"
+  // "Entrepreneur",
+  // "Influencer",
+  // "Trader",
+  // "Gamer",
+  // "Fighter"
 ];
 
 const cuboidPhrases = [
   "who designs the whole stack, not just the surface.",
-  "who bets on ideas before the world believes in them.",
-  "who never trades trust for trends.",
-  "who plays the long game where others panic.",
-  "who chases mastery, not medals.",
-  "who absorbs the pain so loved ones never have to."
+  // "who bets on ideas before the world believes in them.",
+  // "who never trades trust for trends.",
+  // "who plays the long game where others panic.",
+  // "who chases mastery, not medals.",
+  // "who absorbs the pain so loved ones never have to."
 ];
 
 const TypingText = () => {
@@ -60,7 +60,7 @@ const TypingText = () => {
 
   return (
     <div className="absolute top-fluid-top left-[5%] lg:left-[12%] -translate-y-1/2 z-[100] text-left w-[90%] lg:w-auto">
-      <h1 
+      <h1
         className="text-fluid-h2 font-bold text-white mb-1 cursor-pointer hover:opacity-80 transition-opacity"
         onClick={() => navigate('/about')}
       >

@@ -21,6 +21,18 @@ const ContentCard = ({ data, slideDirection, handlePrev, handleNext, hasMultiple
         />
       </div>
 
+      {/* Summary */}
+      {data.roleDetails && (
+        <div className="custom-p-4">
+          <h3 className="text-2xl font-bold text-white flex items-center gap-2 custom-mb-4">
+            About
+          </h3>
+          <div className="text-gray-300 text-base md:text-lg leading-relaxed whitespace-pre-wrap">
+            {data.roleDetails}
+          </div>
+        </div>
+      )}
+
       {/* Experience Component */}
       <Experience experienceData={data.experience} />
 
