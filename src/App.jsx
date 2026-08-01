@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import SocialFAB from './SocialFAB';
 import './index.css';
 import foregroundImg from './assets/Gemini_Generated_Image_qm97ngqm97ngqm97-removebg-preview.png';
 import GithubIcon from './icons/GithubIcon';
@@ -55,6 +56,7 @@ function Home() {
         {/* Foreground Image */}
         <img src={foregroundImg} alt="foreground" className="bottom-right-image" />
       </div>
+      <SocialFAB />
     </div>
   );
 }
