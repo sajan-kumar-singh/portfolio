@@ -21,8 +21,8 @@ const avatarConfig = {
   email: {
     img: character2, // Placeholder
     message: "We value your privacy hence your email is safe with us.",
-    avatarStyles: { width: '230px', left: '100px', bottom: '100px', zIndex: 40, transform: 'rotate(-1deg)' },
-    bubbleStyles: { left: '-140px', bottom: '220px', zIndex: 40 }
+    avatarStyles: { width: '230px', left: '100px', bottom: '115px', zIndex: 40, transform: 'rotate(-1deg)' },
+    bubbleStyles: { left: '-160px', bottom: '235px', zIndex: 40 }
   },
   message: {
     img: character3, // Placeholder
@@ -33,8 +33,8 @@ const avatarConfig = {
   datetime: {
     img: character4, // Placeholder
     message: "I'll choose only one so fill accordingly.",
-    avatarStyles: { width: '460px', right: '-270px', bottom: '105px', zIndex: 40, transform: 'rotate(0deg)' },
-    bubbleStyles: { right: '-50px', bottom: '545px', zIndex: 40 }
+    avatarStyles: { width: '460px', right: '-270px', top: '170px', zIndex: 40, transform: 'rotate(0deg)' },
+    bubbleStyles: { right: '-50px', top: '150px', zIndex: 40 }
   },
   service: {
     img: character5, // Placeholder
@@ -135,8 +135,9 @@ export default function ContactForm({ isDesktop = false }) {
     return dateStr >= minDate;
   };
 
+  const nameRegex = /^[a-zA-Z0-9\s]*$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const isStep1Valid = name.trim() !== '' && name.length <= 25 && email.trim() !== '' && emailRegex.test(email) && message.trim() !== '' && message.length <= 400;
+  const isStep1Valid = name.trim() !== '' && name.length <= 25 && nameRegex.test(name) && email.trim() !== '' && emailRegex.test(email) && message.trim() !== '' && message.length <= 400;
   const isStep2Filled = timeSlots.every(slot => isValidDate(slot.date) && isValidTime(slot.time)) && service !== '';
   const isStep2Valid = isStep2Filled && isConfirmed;
 
@@ -186,19 +187,27 @@ export default function ContactForm({ isDesktop = false }) {
             <div className="flex items-center gap-4 border-gray-700/50 pb-4">
               <h2 className="text-xl font-semibold text-white tracking-wide m-0">Personal Details</h2>
             </div>
-            <div className="input-group !mb-2">
-              <input type="text" name="name" id="name" className={`custom-input ${name ? 'has-value' : ''}`} placeholder=" " value={name} onChange={(e) => setName(e.target.value)} onFocus={() => setFocusedField('name')} onBlur={() => setFocusedField(null)} maxLength={25} required />
+            <div className="input-group !mb-2 relative">
+              <input type="text" name="name" id="name" className={`custom-input ${name ? 'has-value' : ''} ${name.trim() !== '' && !nameRegex.test(name) ? '!border-red-500' : ''}`} placeholder=" " value={name} onChange={(e) => setName(e.target.value)} onFocus={() => setFocusedField('name')} onBlur={() => setFocusedField(null)} maxLength={25} required />
               <label htmlFor="name" className="custom-label">Name</label>
+              <div className="text-xs text-gray-500 text-right mt-1">{name.length}/25</div>
+              {name.trim() !== '' && !nameRegex.test(name) && (
+                <div className="text-xs text-red-500 mt-1">Only alphanumeric characters and spaces are allowed.</div>
+              )}
             </div>
 
-            <div className="input-group !mb-2">
-              <input type="email" name="email" id="email" className={`custom-input ${email ? 'has-value' : ''}`} placeholder=" " value={email} onChange={(e) => setEmail(e.target.value)} onFocus={() => setFocusedField('email')} onBlur={() => setFocusedField(null)} required />
+            <div className="input-group !mb-2 relative">
+              <input type="email" name="email" id="email" className={`custom-input ${email ? 'has-value' : ''} ${email.trim() !== '' && !emailRegex.test(email) ? '!border-red-500' : ''}`} placeholder=" " value={email} onChange={(e) => setEmail(e.target.value)} onFocus={() => setFocusedField('email')} onBlur={() => setFocusedField(null)} required />
               <label htmlFor="email" className="custom-label">Email</label>
+              {email.trim() !== '' && !emailRegex.test(email) && (
+                <div className="text-xs text-red-500 mt-1">Please enter a valid email address.</div>
+              )}
             </div>
 
-            <div className="input-group !mb-2">
+            <div className="input-group !mb-2 relative">
               <textarea name="message" id="message" rows="4" className={`custom-input resize-none ${message ? 'has-value' : ''}`} placeholder=" " value={message} onChange={(e) => setMessage(e.target.value)} onFocus={() => setFocusedField('message')} onBlur={() => setFocusedField(null)} maxLength={400} required></textarea>
               <label htmlFor="message" className="custom-label">Message</label>
+              <div className="text-xs text-gray-500 text-right mt-1">{message.length}/400</div>
             </div>
 
             <button type="button" onClick={handleNext} className="custom-submit-btn w-full !py-3 !text-lg !mt-2 shadow-lg hover:shadow-white/10" disabled={!isStep1Valid}>Next</button>
@@ -225,45 +234,43 @@ export default function ContactForm({ isDesktop = false }) {
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-3">
                 <label className="block text-sm text-gray-400 uppercase tracking-wider font-semibold">Your free time slot</label>
-                <div className="relative group flex items-center justify-center">
-                  <motion.div
-                    animate={{ rotate: [0, -15, 15, -15, 15, 0] }}
-                    transition={{ repeat: Infinity, repeatDelay: 5, duration: 0.5 }}
-                    className="w-5 h-5 rounded-full border-2 border-blue-400/50 text-blue-400 flex items-center justify-center text-xs font-bold cursor-help bg-blue-400/10 hover:bg-blue-400/20"
-                  >
-                    i
-                  </motion.div>
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-xs text-gray-200 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 text-center shadow-xl border border-gray-700">
-                    Date allowed is after 7 days from today and time should be 10AM to 6PM.
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
-                  </div>
-                </div>
+
               </div>
               <div className="flex flex-col gap-3">
                 {timeSlots.map((slot, index) => (
                   <div key={index} className="flex gap-2 items-center group">
                     <div className="flex gap-3 flex-1">
-                      <input
-                        type="date"
-                        className="custom-datetime-input"
-                        min={minDate}
-                        value={slot.date}
-                        onChange={(e) => handleSlotChange(index, 'date', e.target.value)}
-                        onFocus={() => setFocusedField('datetime')}
-                        onBlur={() => setFocusedField(null)}
-                        required
-                      />
-                      <input
-                        type="time"
-                        className="custom-datetime-input"
-                        value={slot.time}
-                        min="10:00"
-                        max="18:00"
-                        onChange={(e) => handleSlotChange(index, 'time', e.target.value)}
-                        onFocus={() => setFocusedField('datetime')}
-                        onBlur={() => setFocusedField(null)}
-                        required
-                      />
+                      <div className="flex-1 flex flex-col gap-1">
+                        <input
+                          type="date"
+                          className={`custom-datetime-input w-full ${slot.date && !isValidDate(slot.date) ? '!border-red-500' : ''}`}
+                          min={minDate}
+                          value={slot.date}
+                          onChange={(e) => handleSlotChange(index, 'date', e.target.value)}
+                          onFocus={() => setFocusedField('datetime')}
+                          onBlur={() => setFocusedField(null)}
+                          required
+                        />
+                        <span className={`text-[10px] text-red-500 pl-1 leading-tight transition-opacity ${slot.date && !isValidDate(slot.date) ? 'opacity-100' : 'opacity-0'}`}>
+                          Min date can be filled value of {minDate}
+                        </span>
+                      </div>
+                      <div className="flex-1 flex flex-col gap-1">
+                        <input
+                          type="time"
+                          className={`custom-datetime-input w-full ${slot.time && !isValidTime(slot.time) ? '!border-red-500' : ''}`}
+                          value={slot.time}
+                          min="10:00"
+                          max="18:00"
+                          onChange={(e) => handleSlotChange(index, 'time', e.target.value)}
+                          onFocus={() => setFocusedField('datetime')}
+                          onBlur={() => setFocusedField(null)}
+                          required
+                        />
+                        <span className={`text-[10px] text-red-500 pl-1 leading-tight transition-opacity ${slot.time && !isValidTime(slot.time) ? 'opacity-100' : 'opacity-0'}`}>
+                          Time allowed 10AM to 6PM
+                        </span>
+                      </div>
                     </div>
                     {timeSlots.length > 1 && (
                       <button
@@ -272,6 +279,8 @@ export default function ContactForm({ isDesktop = false }) {
                         className="text-gray-500 hover:text-red-400 w-8 h-8 rounded-full hover:bg-red-400/10 transition-all flex-shrink-0 flex items-center justify-center cursor-pointer"
                         aria-label="Remove slot"
                         title="Remove this slot"
+                        onFocus={() => setFocusedField('datetime')}
+                        onBlur={() => setFocusedField(null)}
                       >
                         ✕
                       </button>
@@ -284,6 +293,8 @@ export default function ContactForm({ isDesktop = false }) {
                   type="button"
                   onClick={handleAddSlot}
                   className="add-slot-btn"
+                  onFocus={() => setFocusedField('datetime')}
+                  onBlur={() => setFocusedField(null)}
                 >
                   <span className="text-lg leading-none">+</span> Add another slot
                 </button>
@@ -366,24 +377,20 @@ export default function ContactForm({ isDesktop = false }) {
     <AnimatePresence mode="wait">
       {submitStatus === 'success' ? (
         <motion.div key="success" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className={isDesktop ? "flex flex-col items-center justify-center w-full" : "flex flex-col items-center justify-center w-full mt-10"}>
-          <img src={successConfig.img} alt="Success Character" style={{ ...successConfig.avatarStyles }} />
-          <p style={{ ...successConfig.messageStyles }}>{successConfig.message}</p>
+          {isDesktop && <img src={successConfig.img} alt="Success Character" style={{ ...successConfig.avatarStyles }} />}
+          <p style={isDesktop ? { ...successConfig.messageStyles } : { fontSize: '1.5rem', color: '#4ade80', marginTop: '20px', fontWeight: 'bold', textAlign: 'center' }}>{successConfig.message}</p>
         </motion.div>
       ) : submitStatus === 'error' ? (
         <motion.div key="error" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className={isDesktop ? "flex flex-col items-center justify-center w-full" : "flex flex-col items-center justify-center w-full mt-10"}>
-          <img src={errorConfig.img} alt="Error Character" style={{ ...errorConfig.avatarStyles }} />
-          <p style={{ ...errorConfig.messageStyles }}>{errorConfig.message}</p>
+          {isDesktop && <img src={errorConfig.img} alt="Error Character" style={{ ...errorConfig.avatarStyles }} />}
+          <p style={isDesktop ? { ...errorConfig.messageStyles } : { fontSize: '1.5rem', color: '#f87171', marginTop: '20px', fontWeight: 'bold', textAlign: 'center' }}>{errorConfig.message}</p>
         </motion.div>
       ) : (
-        <motion.div key="form" initial={{ opacity: 1 }} exit={{ opacity: 0, y: isDesktop ? -20 : 0 }} className={isDesktop ? "w-full flex flex-col items-center" : "w-full flex justify-center"}>
-          {isDesktop && (
-            <>
-              <h1 className="text-5xl font-bold text-center text-white mb-2">Let's Connect</h1>
-              <p className="text-gray-400 mb-8">&nbsp;</p>
-            </>
-          )}
+        <motion.div key="form" initial={{ opacity: 1 }} exit={{ opacity: 0, y: isDesktop ? -20 : 0 }} className="w-full relative flex flex-col items-center">
+          <h1 className="text-4xl lg:text-5xl font-bold text-center text-white mb-2">Let's Connect</h1>
+          <p className="text-gray-400 mb-6 lg:mb-8">&nbsp;</p>
 
-          <div className={isDesktop ? "bg-[#1a1a1a] p-8 rounded-[40px] border border-[#333] shadow-2xl w-full" : ""}>
+          <div className="bg-[#1a1a1a] p-6 lg:p-8 rounded-3xl lg:rounded-[40px] border border-[#333] shadow-2xl w-full">
             {renderForm()}
           </div>
 
