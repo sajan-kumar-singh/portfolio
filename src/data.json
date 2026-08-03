@@ -255,211 +255,41 @@
         "role": "Client",
         "text": "He built our web application from scratch, and the results exceeded our expectations. The animations were incredibly smooth.",
         "url": "#"
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "image": "/images/Entrepreneur.png",
-    "role": "Entrepreneur",
-    "roleDetails": "I am Sajan, an Entrepreneur who bets on ideas before the world believes in them. I build innovative startups and scalable products from the absolute ground up.\\n\\nAs a founder and technical lead, I bridge the critical gap between pure engineering and strategic business execution. I have successfully bootstrapped MVPs from zero, scaled early-stage user bases rapidly, and navigated the complex landscape of product-market fit and venture growth.\\n\\nI don't just view products through the lens of a developer; I analyze market demands, user retention, and sustainable scaling. My workflow seamlessly combines agile, high-velocity engineering with aggressive go-to-market strategies, ensuring that every feature directly serves the core vision.\\n\\nMy journey is driven by a relentless desire to solve real-world problems and create value. For me, entrepreneurship is about taking extreme ownership, absorbing the pressure, and transforming raw, ambitious ideas into tangible, market-leading realities.",
-    "experience": [
-      {
-        "company": "Own Startup",
-        "location": "Global",
-        "duration": "Jan 2020 - Present",
-        "note": "A technology startup focusing on solving real-world problems with AI and cloud solutions.",
-        "roles": [
-          {
-            "position": "Founder & Technical Lead",
-            "points": [
-              "Bootstrapped the initial MVP and scaled the user base to over 10,000 active users within the first year.",
-              "Managed a small team of developers, designers, and marketers to ensure product-market fit.",
-              "Secured early-stage seed funding by pitching to venture capitalists and angel investors."
-            ]
-          }
-        ]
-      }
-    ],
-    "skills": [
-      {
-        "name": "Angular",
-        "start": "January 2023",
-        "rating": 8,
-        "icon": "AngularIcon",
-        "description": "Built scalable enterprise applications and dynamic UIs.",
-        "link": ""
       },
       {
-        "name": "React",
-        "start": "January 2023",
-        "rating": 9,
-        "icon": "ReactIcon",
-        "description": "Developed interactive Single Page Applications (SPAs).",
-        "link": "#"
+        "name": "Alice Johnson",
+        "role": "Product Manager",
+        "text": "Sajan is a fantastic developer. His ability to translate complex requirements into seamless UI is truly impressive. He always delivers on time.",
+        "url": "#"
       },
       {
-        "name": "Node.js",
-        "start": "January 2023",
-        "rating": 8,
-        "icon": "NodejsIcon",
-        "bgWhite": true,
-        "description": "Created RESTful backend services and scalable APIs.",
-        "link": ""
+        "name": "Mark Smith",
+        "role": "CTO at TechCorp",
+        "text": "Working with Sajan was a great experience. He brought innovative solutions to the table and drastically improved our frontend performance.",
+        "url": "#"
       },
       {
-        "name": "Java",
-        "start": "January 2021",
-        "rating": 7,
-        "icon": "JavaIcon",
-        "bgWhite": true,
-        "description": "Backend development with the Spring ecosystem.",
-        "link": ""
+        "name": "Sarah Lee",
+        "role": "UX Designer",
+        "text": "I love how Sajan pays attention to the finest design details. Our collaborations always resulted in pixel-perfect implementations.",
+        "url": "#"
       },
       {
-        "name": "JavaScript (ES6+)",
-        "start": "January 2023",
-        "rating": 9,
-        "icon": "JavascriptIcon",
-        "description": "Core language for frontend logic and complex scripting.",
-        "link": ""
+        "name": "David Kim",
+        "role": "Senior Engineer",
+        "text": "A highly skilled professional who understands both the big picture and the underlying code architecture. Highly recommended!",
+        "url": "#"
       },
       {
-        "name": "TypeScript",
-        "start": "January 2023",
-        "rating": 8,
-        "icon": "TypescriptIcon",
-        "description": "Used for type-safe React and Angular projects.",
-        "link": ""
+        "name": "Emily Davis",
+        "role": "Frontend Lead",
+        "text": "Sajan's expertise in React and modern JavaScript frameworks is top-notch. He is a great team player and a mentor to juniors.",
+        "url": "#"
       },
       {
-        "name": "SQL",
-        "start": "January 2021",
-        "rating": 7,
-        "icon": "MysqlIcon",
-        "bgWhite": true,
-        "description": "Database design, complex queries, and optimization.",
-        "link": ""
-      },
-      {
-        "name": "HTML5",
-        "start": "January 2020",
-        "rating": 9,
-        "icon": "Html5Icon",
-        "description": "Semantic markup and accessibility best practices.",
-        "link": ""
-      },
-      {
-        "name": "CSS3",
-        "start": "January 2020",
-        "rating": 9,
-        "icon": "Css3Icon",
-        "description": "Responsive design, Flexbox, and CSS Grid layouts.",
-        "link": ""
-      },
-      {
-        "name": "Spring Boot",
-        "start": "January 2023",
-        "rating": 7,
-        "icon": "SpringIcon",
-        "bgWhite": true,
-        "description": "Microservices architecture and robust API development.",
-        "link": ""
-      },
-      {
-        "name": "Bootstrap",
-        "start": "January 2022",
-        "rating": 8,
-        "icon": "BootstrapIcon",
-        "description": "Rapid UI prototyping and responsive grid layouts.",
-        "link": ""
-      },
-      {
-        "name": "RESTful APIs",
-        "start": "January 2023",
-        "rating": 9,
-        "icon": null,
-        "description": "Designing highly scalable and secure web services.",
-        "link": ""
-      },
-      {
-        "name": "MongoDB",
-        "start": "January 2023",
-        "rating": 8,
-        "icon": "MongoIcon",
-        "description": "NoSQL database management and complex aggregations.",
-        "link": ""
-      },
-      {
-        "name": "Google Cloud (Drive API, OAuth 2.0)",
-        "start": "January 2023",
-        "rating": 7,
-        "icon": "GcpIcon",
-        "description": "Cloud integrations and secure authentication flows.",
-        "link": ""
-      },
-      {
-        "name": "AWS S3",
-        "start": "January 2023",
-        "rating": 7,
-        "icon": "AwsS3Icon",
-        "description": "Object storage and scalable cloud asset management.",
-        "link": ""
-      },
-      {
-        "name": "Git",
-        "start": "January 2023",
-        "rating": 8,
-        "icon": "GitIcon",
-        "description": "Version control and collaborative team workflows.",
-        "link": ""
-      },
-      {
-        "name": "GitHub",
-        "start": "January 2023",
-        "rating": 8,
-        "icon": "GithubIcon",
-        "description": "CI/CD pipelines and repository management.",
-        "link": ""
-      },
-      {
-        "name": "Docker",
-        "start": "January 2023",
-        "rating": 6,
-        "icon": "DockerIcon",
-        "description": "Containerized applications for consistent environments.",
-        "link": ""
-      },
-      {
-        "name": "Postman",
-        "start": "January 2023",
-        "rating": 9,
-        "icon": "PostmanIcon",
-        "description": "API testing, comprehensive documentation, and mocking.",
-        "link": ""
-      },
-      {
-        "name": "Cursor AI",
-        "start": "January 2025",
-        "rating": 8,
-        "icon": null,
-        "description": "AI-assisted coding and productivity workflows.",
-        "link": ""
-      },
-      {
-        "name": "Data Structures & Algorithms",
-        "start": "January 2019",
-        "rating": 8,
-        "icon": null,
-        "description": "Problem-solving and optimized code execution.",
-        "link": ""
-      }
-    ],
-    "recommendations": [
-      {
-        "name": "Startup Advisor",
-        "role": "Venture Partner",
-        "text": "A visionary founder who knows how to execute. Sajan's ability to combine technical depth with business acumen is exceptional.",
+        "name": "Michael Brown",
+        "role": "Client",
+        "text": "He built our web application from scratch, and the results exceeded our expectations. The animations were incredibly smooth. He built our web application from scratch, and the results exceeded our expectations. The animations were incredibly smooth.",
         "url": "#"
       }
     ]

@@ -240,7 +240,7 @@ const AnimatedSkillsTable = ({ skillsData }) => {
   });
 
   return (
-    <div ref={containerRef} className="w-full relative" style={{ height: `${totalSkills * 10}vh` }}>
+    <div ref={containerRef} className="w-full relative" style={{ minHeight: 'max-content', paddingBottom: '25vh' }}>
       <div className="sticky top-[10vh] flex flex-col space-y-4 w-full h-auto custom-p-4 about-detail-container mb-12">
         <h3 className="text-2xl font-bold text-white flex items-center gap-2 custom-mb-4">
           Technical Skills

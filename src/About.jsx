@@ -17,7 +17,7 @@ const ContentCard = ({ data, slideDirection, handlePrev, handleNext, hasMultiple
         <img
           src={data.image || data.img}
           alt="About visual"
-          className="about-card-img"
+          className="about-card-img md:h-[70vh] md:aspect-auto md:object-top"
         />
       </div>
 

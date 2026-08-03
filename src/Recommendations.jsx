@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Data will be passed as a prop
 
@@ -11,7 +11,7 @@ const Card = ({ item }) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         style={{
-          height: '45vh', // Dynamic height based on screen height
+          height: '25vh', // Dynamic height based on screen height
           minHeight: '220px', // Fallback for very small screens
           backgroundColor: 'white',
           borderRadius: '12px',
@@ -28,19 +28,22 @@ const Card = ({ item }) => {
         <h4 style={{ margin: '0 0 1vh 0', color: 'black', fontSize: 'clamp(1.1rem, 2.5vh, 1.6rem)' }}>{item.name}</h4>
         <span style={{ fontSize: 'clamp(0.85rem, 1.8vh, 1.1rem)', color: '#6b21a8', marginBottom: '2vh', fontWeight: 'bold' }}>{item.role}</span>
 
-        {/* line-clamp increased since we have a taller dynamic card */}
+        {/* Limit to 3 lines as requested */}
         <p style={{
           margin: 0,
           color: '#333',
           fontSize: 'clamp(0.95rem, 2vh, 1.2rem)',
           lineHeight: '1.5',
           display: '-webkit-box',
-          WebkitLineClamp: 6,
+          WebkitLineClamp: 3,
           WebkitBoxOrient: 'vertical',
           overflow: 'hidden'
         }}>
           "{item.text}"
         </p>
+        <span style={{ color: '#6b21a8', fontWeight: 'bold', fontSize: 'clamp(0.85rem, 1.8vh, 1.1rem)', marginTop: '1vh' }}>
+          See quote
+        </span>
       </div>
     </a>
   );
@@ -88,7 +91,18 @@ const Column = ({ data, direction }) => {
 };
 
 const Recommendations = ({ recommendationsData = [] }) => {
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   if (!recommendationsData || recommendationsData.length < 6) return null;
+
+  const isDesktop = windowWidth > 1024;
+  const isTablet = windowWidth <= 1024 && windowWidth > 640;
 
   const remainder = recommendationsData.length % 3;
   let finalData = [...recommendationsData];
@@ -122,37 +136,47 @@ const Recommendations = ({ recommendationsData = [] }) => {
       </style>
 
       <div style={{
-        height: '100vh',
+        minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         gap: '20px',
         width: '100%',
-        backgroundColor: 'black'
+        backgroundColor: 'black',
+        padding: isDesktop ? '0' : '40px 20px'
       }}>
         <div style={{ textAlign: 'center', marginBottom: '10px' }}>
           <h2 style={{ color: 'white', fontSize: 'clamp(2rem, 4vh, 3.5rem)', fontWeight: 'bold', letterSpacing: '2px', margin: '0 0 10px 0' }}>Recommendations</h2>
         </div>
 
-        {/* Casino Slot Machine Container */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          width: '100%',
-          padding: '0 40px',
-          boxSizing: 'border-box',
-          height: '75vh', // Uses 75% of viewport height
-          maxHeight: '800px', // Safety cap on very large monitors
-          gap: '40px',
-          // The magic fading edge mask
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
-          maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)'
-        }}>
-          <Column data={dataSection1} direction="down" />
-          <Column data={dataSection2} direction="up" />
-          <Column data={dataSection3} direction="down" />
-        </div>
+        {isDesktop ? (
+          /* Casino Slot Machine Container */
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            width: '100%',
+            padding: '0 40px',
+            boxSizing: 'border-box',
+            height: '75vh', // Uses 75% of viewport height
+            maxHeight: '800px', // Safety cap on very large monitors
+            gap: '40px',
+            // The magic fading edge mask
+            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
+            maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)'
+          }}>
+            <Column data={dataSection1} direction="down" />
+            <Column data={dataSection2} direction="up" />
+            <Column data={dataSection3} direction="down" />
+          </div>
+        ) : (
+          /* Stacked Simple Cards Container */
+          <div className={`w-full grid gap-6 max-w-6xl mx-auto ${isTablet ? 'grid-cols-2' : 'grid-cols-1'}`}>
+            {recommendationsData.map((item, index) => (
+              <Card key={index} item={item} />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
