@@ -12,8 +12,8 @@ import ReactIcon from './icons/ReactIcon';
 import AwsIcon from './icons/AwsIcon';
 import CursorAI from './icons/CursorAI';
 import LeetCodeIcon from './icons/LeetCodeIcon';
-import microservices from './assets/R.png';
-import ai from './assets/robot-ai.png';
+import RIcon from './icons/RIcon';
+import SpringIcon from './icons/SpringIcon';
 import About from './About';
 import Portfolio from './Portfolio';
 import Achievement from './Achievement';
@@ -41,7 +41,9 @@ function Home() {
         <div className="orbit-icon icon-outer flex items-center justify-center" style={{ animationDelay: '-6s' }}>
           <ReactIcon size={35} />
         </div>
-        <img src={microservices} alt="outer-orbit-5" className="orbit-icon icon-outer" style={{ filter: 'invert(1)', width: '40px', height: '40px', animationDelay: '-8s' }} />
+        <div className="orbit-icon icon-outer flex items-center justify-center" style={{ animationDelay: '-8s' }}>
+          <RIcon size={45} className="text-white" />
+        </div>
 
         {/* Inner Orbit - 4 Images */}
         <div className="orbit-icon icon-inner flex items-center justify-center" style={{ animationDelay: '0s' }}>
@@ -53,7 +55,9 @@ function Home() {
         <div className="orbit-icon icon-inner flex items-center justify-center" style={{ animationDelay: '-4s' }}>
           <LeetCodeIcon size={35} />
         </div>
-        <img src={ai} alt="inner-orbit-4" className="orbit-icon icon-inner" style={{ animationDelay: '-6s' }} />
+        <div className="orbit-icon icon-inner flex items-center justify-center" style={{ animationDelay: '-6s' }}>
+          <SpringIcon size={35} />
+        </div>
 
         {/* Foreground Image */}
         <img src={foregroundImg} alt="foreground" className="bottom-right-image" />

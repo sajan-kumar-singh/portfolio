@@ -26,9 +26,10 @@
 .social-fab-backdrop {
   background: rgba(0, 0, 0, 0.9);
 }
+
 @media (min-width: 640px) {
   .social-fab-backdrop {
-    background: radial-gradient(circle at bottom left, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 35%, transparent 100%);
+    background: radial-gradient(circle at bottom left, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 35%, transparent 100%);
   }
 }
 
@@ -157,8 +158,6 @@ nav ul li a:hover {
   /* Centered at the bottom right corner (0,0) before translation */
   bottom: -10px;
   right: -10px;
-  width: 35px;
-  height: 35px;
   object-fit: contain;
   z-index: 10;
 }
@@ -619,6 +618,10 @@ body.reduce-motion * {
 }
 
 /* Custom paddings since tailwind paddings are broken */
+.custom-p-3px {
+  padding: 3px;
+}
+
 .custom-p-main {
   padding: 16px;
 }

@@ -22,7 +22,6 @@ export default function SocialFAB() {
     { component: <XIcon size={20} />, url: "https://x.com/SajanKu77443416" },
     { component: <YoutubeIcon size={20} />, url: "https://www.youtube.com/@MyIdealWorld" },
     { component: <LinkedinIcon size={20} />, url: "https://www.linkedin.com/in/sajannkumarssingh/" },
-    { component: <LeetCodeIcon size={20} />, url: "https://leetcode.com/u/SajanSingh/" },
     { component: <InstagramIcon size={20} />, url: "https://www.instagram.com/theimperfectace/" },
     { component: <GithubIcon size={20} className="text-black" />, url: "https://github.com/Sajan-kumar-singh" }
   ];
@@ -110,7 +109,7 @@ export default function SocialFAB() {
                   setIsOpen(false);
                   navigate('/connect');
                 }}
-                className="whitespace-nowrap px-6 py-2.5 bg-white text-black font-bold text-sm rounded-full shadow-xl hover:bg-gray-100 transition-colors border-2 border-transparent"
+                className="whitespace-nowrap custom-p-3px bg-white text-black font-bold text-sm rounded-full shadow-xl hover:bg-gray-100 transition-colors border-2 border-transparent"
               >
                 Book an appointment
               </button>
