@@ -58,52 +58,60 @@ export default function ProjectGallery() {
   const selectedProject = projects.find(p => p.id === selectedId);
 
   return (
-    <div style={{ padding: '5%', width: '100%', height: '100vh', boxSizing: 'border-box', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ padding: '5%', width: '100%', minHeight: '100vh', boxSizing: 'border-box', position: 'relative', overflowX: 'hidden' }}>
       <h2 style={{ color: 'white', fontSize: 'clamp(2rem, 4vh, 3.5rem)', textAlign: 'center', marginBottom: '2rem', fontWeight: 'bold', letterSpacing: '2px' }}>My Projects</h2>
       
       {/* Grid of images */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: '20px',
-        width: '100%',
-        margin: '0 auto',
-        maxWidth: '1200px'
-      }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-[1200px]" style={{ margin: '0 auto' }}>
         {projects.map((project) => (
-          <motion.div
-            key={project.id}
-            layoutId={`card-container-${project.id}`}
-            onClick={() => setSelectedId(project.id)}
-            style={{
-              cursor: 'pointer',
-              borderRadius: '15px',
-              overflow: 'hidden',
-              height: '250px',
-              position: 'relative'
-            }}
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-          >
-            <motion.img
-              layoutId={`image-${project.id}`}
-              src={project.image}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-            <motion.div 
-              layoutId={`title-container-${project.id}`}
-              style={{
-                position: 'absolute',
-                bottom: 0,
-                width: '100%',
-                padding: '1rem',
-                background: 'linear-gradient(transparent, rgba(0,0,0,0.8))',
-                color: 'white'
-              }}
+          <React.Fragment key={project.id}>
+            {/* Desktop Animated Card (>= lg) */}
+            <motion.div
+              layoutId={`card-container-${project.id}`}
+              onClick={() => setSelectedId(project.id)}
+              className="hidden lg:block relative cursor-pointer rounded-[15px] overflow-hidden h-[250px]"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
-              <h3 style={{ margin: 0, fontSize: '1.2rem' }}>{project.title}</h3>
+              <motion.img
+                layoutId={`image-${project.id}`}
+                src={project.image}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+              <motion.div 
+                layoutId={`title-container-${project.id}`}
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  width: '100%',
+                  padding: '1rem',
+                  background: 'linear-gradient(transparent, rgba(0,0,0,0.8))',
+                  color: 'white'
+                }}
+              >
+                <h3 style={{ margin: 0, fontSize: '1.2rem' }}>{project.title}</h3>
+              </motion.div>
             </motion.div>
-          </motion.div>
+
+            {/* Mobile/Tablet Static Card (< lg) */}
+            <div className="block lg:hidden bg-[#111] rounded-[15px] overflow-hidden shadow-lg border border-white/10 flex flex-col h-full">
+              <div className="w-full h-[200px] overflow-hidden">
+                <img src={project.image} className="w-full h-full object-cover" alt={project.title} />
+              </div>
+              <div className="custom-p-5 flex flex-col flex-grow">
+                <h3 className="text-xl font-bold text-[#c084fc] custom-mb-2">{project.title}</h3>
+                <p className="text-gray-400 text-sm custom-mb-4 flex-grow">{project.description}</p>
+                <a 
+                  href={project.link} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="inline-block w-full custom-px-4-py-2 bg-purple-700 hover:bg-purple-600 text-white font-bold rounded-md transition-colors text-center"
+                >
+                  See it
+                </a>
+              </div>
+            </div>
+          </React.Fragment>
         ))}
       </div>
 
@@ -115,6 +123,7 @@ export default function ProjectGallery() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
+            className="hidden lg:flex"
             style={{
               position: 'fixed',
               top: 0,
@@ -122,7 +131,6 @@ export default function ProjectGallery() {
               width: '100vw',
               height: '100vh',
               backgroundColor: 'rgba(0, 0, 0, 0.85)',
-              display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
               zIndex: 100,
