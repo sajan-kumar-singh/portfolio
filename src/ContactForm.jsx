@@ -10,6 +10,15 @@ import character6 from './assets/character6.webp';
 import character7 from './assets/character7.webp';
 import character8 from './assets/character8.webp';
 
+// Preload avatar images so they render instantly without flickering
+const preloadedAvatars = [character1, character2, character3, character4, character5, character6, character7, character8];
+preloadedAvatars.forEach(src => {
+  if (typeof window !== 'undefined') {
+    const img = new Image();
+    img.src = src;
+  }
+});
+
 // Configuration for the Avatar Popups
 const avatarConfig = {
   name: {
