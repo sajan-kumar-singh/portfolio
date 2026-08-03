@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import SocialFAB from './SocialFAB';
 import GlobalPrefetcher from './GlobalPrefetcher';
 import './index.css';
@@ -17,6 +17,7 @@ import ai from './assets/robot-ai.png';
 import About from './About';
 import Portfolio from './Portfolio';
 import Achievement from './Achievement';
+import Connect from './Connect';
 import TypingText from './TypingText';
 
 function Home() {
@@ -62,6 +63,16 @@ function Home() {
   );
 }
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -84,6 +95,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <GlobalPrefetcher />
       <header className="header-container !justify-end sm:!justify-between">
         <div className="home-logo hidden sm:block bg-white/10 backdrop-blur-md border border-solid border-white/20 rounded-[50px] shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
@@ -106,7 +118,7 @@ function App() {
             <li className="block sm:hidden"><Link to="/" onClick={closeSidebar}>Home</Link></li>
             <li><Link to="/portfolio" onClick={closeSidebar}>Portfolio</Link></li>
             <li><Link to="/about" onClick={closeSidebar}>About</Link></li>
-            <li><Link to="/achievement" onClick={closeSidebar}>Achievements</Link></li>
+            <li><Link to="/achievements" onClick={closeSidebar}>Achievements</Link></li>
           </ul>
         </nav>
       </header>
@@ -115,6 +127,7 @@ function App() {
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/about" element={<About />} />
         <Route path="/achievements" element={<Achievement />} />
+        <Route path="/connect" element={<Connect />} />
       </Routes>
     </BrowserRouter>
   );
