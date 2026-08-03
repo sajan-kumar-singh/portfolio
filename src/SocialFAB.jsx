@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { X } from 'lucide-react';
 
 import CallIcon from './icons/CallIcon';
 import XIcon from './icons/X';
@@ -39,16 +40,17 @@ export default function SocialFAB() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={toggleOpen}
-            className="fixed bottom-0 left-0 w-full h-full pointer-events-auto z-[9998]"
-            style={{
-              background: 'radial-gradient(circle at bottom left, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 35%, transparent 100%)'
-            }}
-          />
+            className="fixed bottom-0 left-0 w-full h-full pointer-events-auto z-[9998] social-fab-backdrop"
+          >
+            <div className="absolute top-6 right-6 block sm:hidden text-white/70 hover:text-white cursor-pointer p-2">
+              <X size={32} />
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
 
       {/* FAB Container */}
-      <div className="fixed bottom-[60px] left-[60px] z-[9999] pointer-events-auto flex flex-col items-center">
+      <div className="fixed bottom-fluid-fab sm:bottom-[45px] left-[30px] md:left-[30px] z-[9999] pointer-events-auto flex flex-col items-center">
         <div className="relative">
           {/* Social Icons (Radial Expansion) */}
           <AnimatePresence>

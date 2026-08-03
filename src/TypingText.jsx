@@ -66,9 +66,9 @@ const TypingText = () => {
       >
         Hi, <span className="text-[#FA8A00]">SAJAN</span> here!
       </h1>
-      <div className="flex items-start gap-4">
-        <span className="text-fluid-body font-bold text-white mt-2">I'm</span>
-        <h2 className="text-fluid-h1 font-bold text-[#FA8A00] m-0 leading-none">
+      <div className="flex items-baseline gap-4">
+        <span className="text-fluid-body font-bold text-white">I'm</span>
+        <h2 className="text-fluid-h1 font-bold text-[#FA8A00] leading-none">
           <span className="typed-text">{text}</span>
           {!isSinglePhrase && (
             <span className="font-thin text-fluid-h1 text-white animate-[blink_1s_step-end_infinite]">|</span>

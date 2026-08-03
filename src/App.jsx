@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import SocialFAB from './SocialFAB';
+import GlobalPrefetcher from './GlobalPrefetcher';
 import './index.css';
 import foregroundImg from './assets/Gemini_Generated_Image_qm97ngqm97ngqm97-removebg-preview.png';
 import GithubIcon from './icons/GithubIcon';
@@ -15,7 +16,7 @@ import microservices from './assets/R.png';
 import ai from './assets/robot-ai.png';
 import About from './About';
 import Portfolio from './Portfolio';
-import Connect from './Connect';
+import Achievement from './Achievement';
 import TypingText from './TypingText';
 
 function Home() {
@@ -83,8 +84,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      <header className="header-container">
-        <div className="home-logo bg-white/10 backdrop-blur-md border border-solid border-white/20 rounded-[50px] shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+      <GlobalPrefetcher />
+      <header className="header-container !justify-end sm:!justify-between">
+        <div className="home-logo hidden sm:block bg-white/10 backdrop-blur-md border border-solid border-white/20 rounded-[50px] shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
           <Link to="/">Home</Link>
         </div>
 
@@ -101,9 +103,10 @@ function App() {
           className={`nav-bar fixed lg:static top-0 transition-[right] duration-300 ease-in-out z-[1000] lg:z-auto flex-col lg:flex-row justify-center items-center h-screen lg:h-auto !w-[250px] lg:!w-[60%] !bg-black/70 backdrop-blur-md lg:!bg-white/10 !rounded-none lg:!rounded-[50px] !border-none lg:!border-solid lg:!border lg:!border-white/20 ${isSidebarOpen ? 'right-0' : '-right-full'} lg:right-auto`}
         >
           <ul className="nav-links !flex-col lg:!flex-row !justify-center lg:!justify-evenly items-center gap-10 lg:gap-0 h-full lg:h-auto w-full">
+            <li className="block sm:hidden"><Link to="/" onClick={closeSidebar}>Home</Link></li>
             <li><Link to="/portfolio" onClick={closeSidebar}>Portfolio</Link></li>
             <li><Link to="/about" onClick={closeSidebar}>About</Link></li>
-            <li><Link to="/connect" onClick={closeSidebar}>Connect</Link></li>
+            <li><Link to="/achievement" onClick={closeSidebar}>Achievements</Link></li>
           </ul>
         </nav>
       </header>
@@ -111,7 +114,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/about" element={<About />} />
-        <Route path="/connect" element={<Connect />} />
+        <Route path="/achievements" element={<Achievement />} />
       </Routes>
     </BrowserRouter>
   );
