@@ -23,7 +23,7 @@ export default function ScrollingBadges() {
 
   return (
     <div
-      className="relative w-full h-full bg-[#050505] overflow-hidden flex items-center justify-center"
+      className="group relative w-full h-full bg-[#050505] overflow-hidden flex items-center justify-center"
       style={{
         // The magic masking trick: fades out the edges so you never see the loop reset!
         WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)',
@@ -132,6 +132,23 @@ export default function ScrollingBadges() {
       <div className="absolute inset-0 z-10 pointer-events-none" style={{
         background: 'radial-gradient(circle at center, transparent 15%, #050505 90%)'
       }}></div>
+
+      {/* Title overlay that fades out on hover */}
+      <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none transition-opacity duration-500 opacity-100 group-hover:opacity-0 bg-black/90">
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: '100%' }}>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight" style={{
+            textShadow: '0 4px 30px rgba(0,0,0,0.9), 0 0 50px rgba(0,0,0,0.5)'
+          }}>
+            Badges I Won
+          </h2>
+          <p className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white tracking-tight" style={{
+            textShadow: '0 4px 30px rgba(0,0,0,0.9), 0 0 50px rgba(0,0,0,0.5)',
+            marginTop: '2rem'
+          }}>
+            Hover to see
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
