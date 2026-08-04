@@ -23,9 +23,9 @@ preloadedAvatars.forEach(src => {
 const avatarConfig = {
   name: {
     img: character1, // Placeholder, swap with your 3D avatar PNG
-    message: "We don't spam so fill all details without fear.",
-    avatarStyles: { width: '170px', left: '-130px', bottom: '0px', zIndex: 40, transform: 'rotate(-10deg)' },
-    bubbleStyles: { left: '-270px', bottom: '380px', zIndex: 40 }
+    message: "We don't spam. Fill all details without fear.",
+    avatarStyles: { width: '170px', left: '-70px', bottom: '0px', zIndex: 40, transform: 'rotate(-10deg)' },
+    bubbleStyles: { left: '-200px', bottom: '380px', zIndex: 40 }
   },
   email: {
     img: character2, // Placeholder
@@ -36,8 +36,8 @@ const avatarConfig = {
   message: {
     img: character3, // Placeholder
     message: "Write wisely to grab our attention.",
-    avatarStyles: { width: '140px', left: '10px', top: '-33px', zIndex: 40, transform: 'rotate(0deg)' },
-    bubbleStyles: { left: '-135px', top: '-60px', zIndex: 40 }
+    avatarStyles: { width: '140px', right: '35px', bottom: '235px', zIndex: 40, transform: 'rotate(0deg)' },
+    bubbleStyles: { right: '65px', bottom: '370px', zIndex: 40 }
   },
   datetime: {
     img: character4, // Placeholder
@@ -47,9 +47,9 @@ const avatarConfig = {
   },
   service: {
     img: character5, // Placeholder
-    message: "Payment method and meeting date I'll tell later.",
+    message: "Payment method I'll tell later.",
     avatarStyles: { width: '200px', left: '-55px', bottom: '90px', zIndex: 40, transform: 'rotate(2deg)' },
-    bubbleStyles: { left: '-230px', bottom: '290px', zIndex: 40 }
+    bubbleStyles: { left: '-130px', bottom: '290px', zIndex: 40 }
   },
   confirm: {
     img: character6, // Placeholder
@@ -186,8 +186,8 @@ export default function ContactForm({ isDesktop = false }) {
     return (
       <form
         onSubmit={handleSubmit}
-        className="w-full min-w-[18rem] max-w-md flex flex-col gap-4 mt-10"
-        style={isDesktop ? { margin: '20px 0px 20px 80px' } : {}}
+        className={`w-full min-w-[18rem] flex flex-col gap-4 mt-10 ${isDesktop ? 'max-w-md' : ''}`}
+        style={isDesktop ? { margin: '20px 0px 20px 80px' } : { padding: '25px' }}
       >
 
         {step === 1 && (
@@ -224,7 +224,7 @@ export default function ContactForm({ isDesktop = false }) {
         )}
 
         {step === 2 && (
-          <div className="flex flex-col gap-8 text-gray-200 animate-fade-in w-full max-w-md mx-auto">
+          <div className={`flex flex-col gap-8 text-gray-200 animate-fade-in w-full mx-auto ${isDesktop ? 'max-w-md' : ''}`}>
 
             {/* Header */}
             <div className="flex items-center gap-4 border-gray-700/50 pb-4">
@@ -261,7 +261,7 @@ export default function ContactForm({ isDesktop = false }) {
                           required
                         />
                         <span className={`text-[10px] text-red-500 pl-1 leading-tight transition-opacity ${slot.date && !isValidDate(slot.date) ? 'opacity-100' : 'opacity-0'}`}>
-                          Min date can be filled value of {minDate}
+                          Min date available is {minDate}
                         </span>
                       </div>
                       <div className="flex-1 flex flex-col gap-1">
@@ -312,7 +312,10 @@ export default function ContactForm({ isDesktop = false }) {
 
             {/* Service Selection */}
             <div className="flex flex-col gap-4">
-              <label htmlFor="service" className="block text-sm text-gray-400 uppercase tracking-wider font-semibold">Service Required</label>
+              <label htmlFor="service" className="flex items-center text-sm text-gray-400 uppercase tracking-wider font-semibold">
+                <span>Service Required</span>
+                {!isDesktop && <span className="text-xs text-gray-500 normal-case tracking-normal font-normal">&nbsp;&nbsp;&nbsp; Payment method I'll tell later.</span>}
+              </label>
               <div className="relative">
                 <select
                   name="service"
