@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-do
 import SocialFAB from './SocialFAB';
 import GlobalPrefetcher from './GlobalPrefetcher';
 import './index.css';
-import foregroundImg from './assets/Gemini_Generated_Image_qm97ngqm97ngqm97-removebg-preview.png';
+import foregroundImg from './assets/portrait.webp';
 import GithubIcon from './icons/GithubIcon';
 import InstagramIcon from './icons/InstagramIcon';
 import DockerIcon from './icons/DockerIcon';
