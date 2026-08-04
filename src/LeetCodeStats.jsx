@@ -33,7 +33,7 @@ export default function LeetCodeStats({ username = 'Sajann_Kumar_SSingh' }) {
 
         const CACHE_KEY = `leetcode_stats_${username}`;
         const cachedData = localStorage.getItem(CACHE_KEY);
-        
+
         if (cachedData) {
           try {
             const parsed = JSON.parse(cachedData);
@@ -84,7 +84,7 @@ export default function LeetCodeStats({ username = 'Sajann_Kumar_SSingh' }) {
         setLanguageData(languageJson);
         setSkillData(skillJson);
         setCalendarData(calendarJson);
-        
+
         // Save to cache if we got profile data successfully
         if (profileJson && profileJson.errors === undefined) {
           localStorage.setItem(CACHE_KEY, JSON.stringify({
@@ -140,12 +140,12 @@ export default function LeetCodeStats({ username = 'Sajann_Kumar_SSingh' }) {
         {/* Background Accents */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-500/10 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-orange-500/10 rounded-full blur-[100px] pointer-events-none"></div>
-        
+
         {/* Header section */}
         <div className="flex flex-col md:flex-row items-center gap-8 custom-mb-4 relative z-10">
-          <img 
-            src={profile.avatar} 
-            alt={profile.name} 
+          <img
+            src={profile.avatar}
+            alt={profile.name}
             className="w-24 h-24 rounded-full border-2 border-yellow-500/50 shadow-[0_0_20px_rgba(234,179,8,0.2)]"
           />
           <div className="text-center md:text-left flex-1">
@@ -173,9 +173,9 @@ export default function LeetCodeStats({ username = 'Sajann_Kumar_SSingh' }) {
             </div>
             <div className="text-4xl font-bold text-white custom-mb-2">{solvedData.solvedProblem}</div>
             <div className="w-full bg-gray-800 rounded-full h-2 custom-mt-4 overflow-hidden flex">
-              <div style={{ width: `${(solvedData.easySolved/solvedData.solvedProblem)*100}%` }} className="h-full bg-emerald-500"></div>
-              <div style={{ width: `${(solvedData.mediumSolved/solvedData.solvedProblem)*100}%` }} className="h-full bg-yellow-500"></div>
-              <div style={{ width: `${(solvedData.hardSolved/solvedData.solvedProblem)*100}%` }} className="h-full bg-red-500"></div>
+              <div style={{ width: `${(solvedData.easySolved / solvedData.solvedProblem) * 100}%` }} className="h-full bg-emerald-500"></div>
+              <div style={{ width: `${(solvedData.mediumSolved / solvedData.solvedProblem) * 100}%` }} className="h-full bg-yellow-500"></div>
+              <div style={{ width: `${(solvedData.hardSolved / solvedData.solvedProblem) * 100}%` }} className="h-full bg-red-500"></div>
             </div>
           </div>
 
