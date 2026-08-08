@@ -1,53 +1,21 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import wallpaper1 from './assets/wallpaper (1).jpg';
-import wallpaper2 from './assets/wallpaper (2).jpg';
-import wallpaper3 from './assets/wallpaper (3).jpg';
-import wallpaper4 from './assets/wallpaper (4).jpg';
-import wallpaper5 from './assets/wallpaper (5).jpg';
-import wallpaper6 from './assets/wallpaper (6).jpg';
+import resumeGeneratorImg from './assets/ResumeGenerator.webp';
+import passwordManagerImg from './assets/PasswordManager.webp';
 
 const projects = [
   {
     id: '1',
-    title: 'E-Commerce Platform',
-    description: 'A full-stack e-commerce solution built with React and Node.js. Features include user authentication, payment processing, and an intuitive admin dashboard.',
-    image: wallpaper1,
+    title: 'Resume Generator',
+    description: 'A full-stack resume generator built with React and Node.js. Features include user authentication, payment processing, and an intuitive admin dashboard.',
+    image: resumeGeneratorImg,
     link: '#'
   },
   {
     id: '2',
-    title: 'Financial Dashboard',
-    description: 'Real-time financial tracking application using WebSockets and D3.js. Allows users to monitor crypto and stock portfolios seamlessly.',
-    image: wallpaper2,
-    link: '#'
-  },
-  {
-    id: '3',
-    title: 'AI Image Generator',
-    description: 'Integrated with OpenAI APIs to generate stunning images from user text prompts. Built with Next.js and Tailwind CSS for a premium feel.',
-    image: wallpaper3,
-    link: '#'
-  },
-  {
-    id: '4',
-    title: 'Social Media App',
-    description: 'A scalable social networking application with real-time chat, post feeds, and notification systems powered by Redis and Socket.io.',
-    image: wallpaper4,
-    link: '#'
-  },
-  {
-    id: '5',
-    title: 'Task Management Tool',
-    description: 'A beautiful Kanban-style productivity tool with drag-and-drop features, team collaboration, and deadline tracking.',
-    image: wallpaper5,
-    link: '#'
-  },
-  {
-    id: '6',
-    title: 'Portfolio Website',
-    description: 'An interactive 3D portfolio website utilizing Three.js and Framer Motion to showcase skills, recommendations, and projects in a unique way.',
-    image: wallpaper6,
+    title: 'Password Manager',
+    description: 'A secure password manager built with React and Node.js. Features include password generation, secure storage, and an intuitive admin dashboard.',
+    image: passwordManagerImg,
     link: '#'
   }
 ];
@@ -58,9 +26,9 @@ export default function ProjectGallery() {
   const selectedProject = projects.find(p => p.id === selectedId);
 
   return (
-    <div style={{ padding: '5%', width: '100%', minHeight: '100vh', boxSizing: 'border-box', position: 'relative', overflowX: 'hidden' }}>
+    <div style={{ padding: '5%', width: '100%', boxSizing: 'border-box', position: 'relative', overflowX: 'hidden' }}>
       <h2 style={{ color: 'white', fontSize: 'clamp(2rem, 4vh, 3.5rem)', textAlign: 'center', marginBottom: '2rem', fontWeight: 'bold', letterSpacing: '2px' }}>My Projects</h2>
-      
+
       {/* Grid of images */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-[1200px]" style={{ margin: '0 auto' }}>
         {projects.map((project) => (
@@ -78,7 +46,7 @@ export default function ProjectGallery() {
                 src={project.image}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
-              <motion.div 
+              <motion.div
                 layoutId={`title-container-${project.id}`}
                 style={{
                   position: 'absolute',
@@ -101,9 +69,9 @@ export default function ProjectGallery() {
               <div className="custom-p-5 flex flex-col flex-grow">
                 <h3 className="text-xl font-bold text-[#c084fc] custom-mb-2">{project.title}</h3>
                 <p className="text-gray-400 text-sm custom-mb-4 flex-grow">{project.description}</p>
-                <a 
-                  href={project.link} 
-                  target="_blank" 
+                <a
+                  href={project.link}
+                  target="_blank"
                   rel="noreferrer"
                   className="inline-block w-full custom-px-4-py-2 bg-purple-700 hover:bg-purple-600 text-white font-bold rounded-md transition-colors text-center"
                 >
@@ -181,15 +149,15 @@ export default function ProjectGallery() {
                 <motion.div layoutId={`title-container-${selectedProject.id}`} style={{ marginBottom: '1rem', background: 'none' }}>
                   <h2 style={{ margin: 0, fontSize: '2.5rem', color: '#c084fc' }}>{selectedProject.title}</h2>
                 </motion.div>
-                
+
                 <p style={{ fontSize: '1.1rem', lineHeight: '1.6', color: '#ccc', marginBottom: 'auto' }}>
                   {selectedProject.description}
                 </p>
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '2rem' }}>
-                  <a 
-                    href={selectedProject.link} 
-                    target="_blank" 
+                  <a
+                    href={selectedProject.link}
+                    target="_blank"
                     rel="noreferrer"
                     style={{
                       padding: '12px 24px',
@@ -207,8 +175,8 @@ export default function ProjectGallery() {
                   >
                     See it
                   </a>
-                  
-                  <button 
+
+                  <button
                     onClick={() => setSelectedId(null)}
                     style={{
                       background: 'none',

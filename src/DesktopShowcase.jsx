@@ -52,9 +52,17 @@ const ShowcaseItem = ({ item }) => {
           </p>
 
           <div style={{ marginTop: '32px' }}>
-            <button className="rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-yellow-500/50 transition-all text-white font-medium" style={{ padding: '12px 24px' }}>
-              Show More
-            </button>
+            {item.link ? (
+              <a href={item.link} target="_blank" rel="noopener noreferrer">
+                <button className="rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-yellow-500/50 transition-all text-white font-medium cursor-pointer" style={{ padding: '12px 24px' }}>
+                  Show More
+                </button>
+              </a>
+            ) : (
+              <button className="rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-yellow-500/50 transition-all text-white font-medium" style={{ padding: '12px 24px' }}>
+                Show More
+              </button>
+            )}
           </div>
         </motion.div>
 

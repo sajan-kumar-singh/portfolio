@@ -19,6 +19,9 @@ import GitIcon from './icons/GitIcon';
 import DockerIcon from './icons/DockerIcon';
 import PostmanIcon from './icons/PostmanIcon';
 import GithubIcon from './icons/GithubIcon';
+import CursorAI from './icons/CursorAI';
+import APIIcon from './icons/APIIcon';
+import BinarySearchTreeIcon from './icons/BinarySearchTreeIcon';
 
 const iconDictionary = {
   AngularIcon,
@@ -38,7 +41,10 @@ const iconDictionary = {
   GitIcon,
   DockerIcon,
   PostmanIcon,
-  GithubIcon
+  GithubIcon,
+  CursorAI,
+  APIIcon,
+  BinarySearchTreeIcon,
 };
 
 let globalSkillsHaveAnimated = false;

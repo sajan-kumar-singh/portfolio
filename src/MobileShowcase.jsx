@@ -36,9 +36,15 @@ export default function MobileShowcase() {
               </p>
 
               <div style={{ marginTop: 'auto' }}>
-                <span className="text-[10px] sm:text-xs font-bold text-yellow-600 uppercase tracking-widest cursor-pointer hover:text-yellow-500">
-                  Show More &rarr;
-                </span>
+                {item.link ? (
+                  <a href={item.link} target="_blank" rel="noopener noreferrer" className="inline-block text-[10px] sm:text-xs font-bold text-yellow-600 uppercase tracking-widest cursor-pointer hover:text-yellow-500">
+                    Show More &rarr;
+                  </a>
+                ) : (
+                  <span className="text-[10px] sm:text-xs font-bold text-yellow-600 uppercase tracking-widest cursor-pointer hover:text-yellow-500">
+                    Show More &rarr;
+                  </span>
+                )}
               </div>
             </div>
           </div>

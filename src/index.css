@@ -732,3 +732,21 @@ body.reduce-motion * {
 .custom-px-2-py-0-5 {
   padding: 2px 8px;
 }
+
+.custom-mb-1 {
+  margin-bottom: 4px;
+}
+
+.custom-px-1 {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.custom-px-2 {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.custom-mt-1-5 {
+  margin-top: 6px;
+}
